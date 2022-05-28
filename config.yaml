@@ -14,6 +14,9 @@ googleAnalytics: G-MML5F47PH4
 
 enableGitInfo: true
 
+# enableEmoji: true
+# enableInlineShortcodes: true
+
 # Set hasCJKLanguage to true if DefaultContentLanguage is in [zh-cn ja ko]
 # This will make .Summary and .WordCount behave correctly for CJK languages.
 hasCJKLanguage: true
@@ -43,12 +46,23 @@ menu:
           params:
               icon: brand-twitter
 
+related:
+    includeNewer: true
+    threshold: 60
+    toLower: false
+    indices:
+        - name: tags
+          weight: 100
+
+        - name: categories
+          weight: 200
+
 params:
   mainSections:
     - post
   featuredImageField: image
   rssFullContent: true
-  favicon:
+  favicon: https://raw.githubusercontent.com/adolphlwq/osshub/master/oss/facivon/mlsys-vertical.webp
 
   footer:
     since: 2019
@@ -86,24 +100,6 @@ params:
       admin:
       adminLabel:
 
-    utterances:
-      repo:
-      issueTerm: pathname
-      label:
-
-    remark42:
-      host:
-      site:
-      locale:
-
-    vssue:
-      platform:
-      owner:
-      repo:
-      clientId:
-      clientSecret:
-      autoCreateIssue: false
-
     # Waline client configuration see: https://waline.js.org/en/reference/client.html
     waline:
       serverURL: https://blogcomment-puce.vercel.app
@@ -124,7 +120,7 @@ params:
 
       requiredMeta:
         - name
-        # - email
+        - email
         # - url
       placeholder:
       locale:
@@ -135,29 +131,6 @@ params:
       region:
       path:
       lang:
-
-    giscus:
-      repo:
-      repoID:
-      category:
-      categoryID:
-      mapping:
-      lightTheme:
-      darkTheme:
-      reactionsEnabled: 1
-      emitMetadata: 0
-      lang:
-
-    gitalk:
-      owner:
-      admin:
-      repo:
-      clientID:
-      clientSecret:
-
-    cusdis:
-      host:
-      id:
 
   widgets:
     homepage:
