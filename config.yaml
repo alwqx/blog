@@ -62,7 +62,7 @@ params:
     - post
   featuredImageField: image
   rssFullContent: true
-  favicon: https://raw.githubusercontent.com/adolphlwq/osshub/master/oss/facivon/mlsys-vertical.webp
+  favicon: https://raw.githubusercontent.com/adolphlwq/osshub/master/oss/facivon/glider.ico
 
   footer:
     since: 2019
