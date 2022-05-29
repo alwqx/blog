@@ -2,9 +2,11 @@
 title: "Blog New Start"
 date: 2022-05-27T22:32:01+08:00
 draft: true
+index: 1
 categories:
     - 建站
 tags:
+    - blog
     - hugo
     - hugo-theme-stack
 image: https://raw.githubusercontent.com/adolphlwq/osshub/master/oss/banner/typewriter-2.jpg
@@ -17,6 +19,41 @@ description: 本文介绍使用 Hugo 搭建个人博客，涉及主题选择与�
 2. 2017-2019，Ghost + VPS 阶段。起始于 2017 年左右吧，部署在个人的 VPS 上，停用后把备份在了 [blog-archive](https://github.com/adolphlwq/blog-archive)。
 3. 2019-2022，将博客备份在 [blog-archive](https://github.com/adolphlwq/blog-archive) 后就不再打理，半弃坑状态。
 
+## 为什么使用 Hugo
+**一个字，快！**，hugo 生成站点的速度非常快，速度是 Hexo 的 10 倍，自己基于 [pinlyu 站点仓库](https://github.com/leirock/blog) 的 66 篇博客文章测试，分别使用 Hexo 和 Hugo 生成站点，它们的耗时如下：
+
+Hexo:
+```shell
+$ hexo clean
+$ hexo g
+INFO  Start processing
+INFO  Files loaded in 3.12 s
+INFO  182 files generated in 6.09 s
+```
+
+Hugo
+```shell
+$ rm -rf public
+$ hugo
+Start building sites …
+hugo v0.99.1+extended linux/amd64 BuildDate=unknown
+
+                   | ZH-CN | EN
+-------------------+-------+-----
+  Pages            |   173 | 34
+  Paginator pages  |    19 |  0
+  Non-page files   |     0 |  0
+  Static files     |    26 | 26
+  Processed images |     0 |  0
+  Aliases          |    50 | 12
+  Sitemaps         |     2 |  1
+  Cleaned          |     0 |  0
+
+Total in 278 ms
+```
+Hugo 总耗时 278 ms，Hexo 加载文件耗时 3.12s，生产站点耗时 6.09s，当 Hexo 还在加载文件时，Hugo 已经完事了，差距实在是太大了。
+
+## 优化目标
 当前的博客算是第 4 版，决定使用 Hugo 静态站点生成器，写作流基于 Git，对博客的定位/目标如下：
 1. **内容质量好，对读者有帮助**
 2. 更新频率高，不能超过 2 周断更
