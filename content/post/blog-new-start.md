@@ -90,6 +90,11 @@ Hugo 总耗时 278 ms，Hexo 加载文件耗时 3.12s，生产站点耗时 6.09s
 ## 自动化方案
 git push 后自动化部署网站
 
+## theme stack 修改
+调整 menu 和 sidebar 的宽度，PR 没有被作者合并，但是可以参考 [PR 代码](https://github.com/CaiJimmy/hugo-theme-stack/pull/618) 自己修改。
+
+自己改用默认的样式了。
+
 ## TODOs
 - [ ] SEO
 - [ ] 访问速度优化

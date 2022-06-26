@@ -24,7 +24,7 @@ hasCJKLanguage: true
 # defaultContentLanguage: cn
 
 permalinks:
-  post: /post/:slug/
+  post: /post/:filename/
   page: /:slug/
 
 ### Custom menu
@@ -122,9 +122,9 @@ params:
         - name
         - email
         # - url
-      placeholder:
       locale:
         admin: Admin
+        placeholder:
 
     twikoo:
       envId:

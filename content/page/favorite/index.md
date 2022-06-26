@@ -23,3 +23,4 @@ menu:
 | [程序员的喵](https://catcoding.me/) | 2022.05.30 | 写到 60 岁 | 学习的榜样 |
 | [程序员的喵-英文博客](https://coderscat.com/) | 2022.05.30 | 写到 60 岁 | 学习的榜样 |
 | [messense](https://keybase.io/messense) | 2022.01.02 | 第一个 | 榜样 |
+| [tonybai](https://tonybai.com/) | 2022.06.24 | 长期写博客 | 长期写作者 |
