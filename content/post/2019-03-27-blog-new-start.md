@@ -11,6 +11,7 @@ tags:
     - hugo-theme-stack
 image: https://raw.githubusercontent.com/adolphlwq/osshub/master/oss/banner/typewriter-2.jpg
 description: 本文介绍使用 Hugo 搭建个人博客，涉及主题选择与配置、部署、访问加速、SEO 优化等
+slug: blog-new-start
 ---
 
 ## 简介

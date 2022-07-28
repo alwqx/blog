@@ -12,6 +12,7 @@ comments: true
 draft: false
 image: https://github.com/adolphlwq/osshub/blob/master/oss/banner/flower_00.jpg?raw=true
 description: 本文介绍笔者对当年高考历程的经验与教训的总结，希望能够给备战高考的学生们一些参考和帮助
+slug: lessons-of-gaokao
 ---
 
 我是 2012 年 6.789 三天参加高考，到现在 (`2018.7.23`) 过去了 6 年，这是我第一次回顾总结高考的经验与教训，为我接下来的考试提供参考。

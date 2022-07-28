@@ -11,6 +11,7 @@ draft: false
 categories:
     - 求学
 image: https://github.com/adolphlwq/osshub/blob/master/oss/banner/flower_00.jpg?raw=true
+slug: lessons-of-postgraduate-exam
 ---
 ## 背景
 本科计算机科学与技术专业，2016 年 6 月毕业，工作两年于 2018.7.20 辞职考研，目标专业是`计算机技术专业硕士`，一战上岸上海 985。

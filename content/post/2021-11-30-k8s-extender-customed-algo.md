@@ -11,6 +11,7 @@ hidden: false
 comments: true
 image: images/2021/liang-arc.png
 draft: false
+slug: k8s-extender-customed-algo
 ---
 随着云计算和容器技术的发展，以 docker 为核心的容器技术迅速在开发者和科技公司中应用，Kubernetes 凭借丰富的企业级、生产级功能成为事实上的容器集群管理系统。可是 k8s 的`通用性`削弱了调度算法的`定制性`，本文将调研定制化调度算法的方法，并且给出一个开源实现 Demo。
 

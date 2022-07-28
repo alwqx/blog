@@ -11,6 +11,7 @@ draft: false
 categories:
     - 求学
 image: https://github.com/adolphlwq/osshub/blob/master/oss/banner/flower_00.jpg?raw=true
+slug: harvest-and-regret-of-postgraduate
 ---
 # 读研时间线
 ## 2018.7-2019.3 复习备考阶段

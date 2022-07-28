@@ -24,7 +24,7 @@ hasCJKLanguage: true
 # defaultContentLanguage: cn
 
 permalinks:
-  post: /post/:filename/
+  post: /post/:slug/
   page: /:slug/
 
 ### Custom menu

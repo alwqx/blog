@@ -11,6 +11,7 @@ categories:
 image: https://github.com/adolphlwq/osshub/blob/master/oss/banner/flower_00.jpg?raw=true
 comments: true
 draft: false
+slug: why-postgraduate-exam
 ---
 
 >上次写的文章 [2019 计算机考研的经验和教训](https://blog.adolphlwq.xyz/2019-postgraduate-exam-lessons/) 收到了一些读者的反馈，部分读者受到鼓舞，坚定了考研的信念。本文记录自己做这个决定的思考过程，希望给纠结考研的人一些参考。
