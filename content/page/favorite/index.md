@@ -1,18 +1,7 @@
 ---
 title: "Favorite"
-description:
 date: 2022-05-30T22:59:18+08:00
-image:
-math: false
-license:
-hidden: false
-comments: true
 draft: false
-menu:
-    main:
-        weight: -60
-        params:
-            icon: messages
 ---
 
 >启发自 [yihong-2022](https://github.com/yihong0618/2022)

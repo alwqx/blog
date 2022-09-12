@@ -10,14 +10,19 @@ comments: true
 draft: false
 categories:
     - 求学
-image: https://github.com/adolphlwq/osshub/blob/master/oss/banner/flower_00.jpg?raw=true
 slug: harvest-and-regret-of-postgraduate
+toc: true
 ---
+
+![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/banner/flower_00.jpg)
+
 # 读研时间线
 ## 2018.7-2019.3 复习备考阶段
 这段时间主要在思考要不要考研、复习备考阶段，请参考拙作：
 1. [2019 计算机工作两年，我为什么决定考研](why-postgraduate-exam.md)
 2. [2019 计算机研究生考试的经验和教训](lessons-of-postgraduate-exam.md)
+
+<!--more-->
 
 ## 2019.3-2019.9 入学前的半年
 这半年我原计划是找实习赚钱，并且利用赚的钱多出去转转。但是那时候我的目光过于狭隘，只想着去字节跳动实习，没想过其它公司。自己又磨磨唧唧没有投简历面试，浪费了宝贵的 3 个月。后面 3 个月决定回家和妈妈生活一段时间，我想着多陪陪她，帮她纠正一些不好的生活习惯和观念。

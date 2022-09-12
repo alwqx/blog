@@ -10,13 +10,18 @@ comments: true
 draft: false
 categories:
     - 求学
-image: https://github.com/adolphlwq/osshub/blob/master/oss/banner/flower_00.jpg?raw=true
 slug: lessons-of-postgraduate-exam
+toc: true
 ---
+
+![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/banner/flower_00.jpg)
+
 ## 背景
 本科计算机科学与技术专业，2016 年 6 月毕业，工作两年于 2018.7.20 辞职考研，目标专业是`计算机技术专业硕士`，一战上岸上海 985。
 
 复习前咨询了两位考过研的同学，然后自己买资料独立复习，期间没有报辅导班和网课。
+
+<!--more-->
 
 ## 内容目录
 以下内容总结于自己 [高考](https://blog.adolphlwq.xyz/college-entrance-examination-experience-and-lessons/)、北理工同学、上交学弟以及自己上岸的经验，按权值（重要程度）先后排列如下：

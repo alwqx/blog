@@ -9,11 +9,16 @@ categories:
     - kubernetes
 hidden: false
 comments: true
-image: images/2021/liang-arc.png
 draft: false
 slug: k8s-extender-customed-algo
+toc: true
 ---
+
+![](images/2021/liang-arc.png)
+
 随着云计算和容器技术的发展，以 docker 为核心的容器技术迅速在开发者和科技公司中应用，Kubernetes 凭借丰富的企业级、生产级功能成为事实上的容器集群管理系统。可是 k8s 的`通用性`削弱了调度算法的`定制性`，本文将调研定制化调度算法的方法，并且给出一个开源实现 Demo。
+
+<!--more-->
 
 # k8s 与调度器架构
 下图 1-1 是 Kubernetes 的整体架构图，集群节点分为两种角色：`Master 节点`和`Node 节点`。Master 节点是整个集群的管理中心，负责集群管理、容器调度、状态存储等组件都运行在 Master 节点上；Node 节点是实际上的工作节点，负责运行具体的容器。
