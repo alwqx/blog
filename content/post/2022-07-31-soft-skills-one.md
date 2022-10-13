@@ -9,14 +9,19 @@ hidden: false
 comments: true
 draft: false
 slug: soft-skills-one
-image: https://github.com/adolphlwq/osshub/blob/master/oss/banner/girl-reading.jpg?raw=true
 categories:
     - 阅读
+toc: true
 ---
+
+![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/banner/girl-reading.jpg)
+
 # 职业之路-如何实现在 33 岁时退休的
 作者很早就知道自己想要什么，**自从我开始工作，我的目标就是提前退休**，提前退休的含义，**是生活中能够自由自在地做自己想做的事情**。
 
 很幸运，作者做到了，并且毫无隐瞒地分享给我们，坦诚这一过程中经历的所有失败与成功。**这一点是本书与其它成功学书籍最大的不同，作者的坦诚令人敬佩**。而且实际的操作过程对于读者有更实际的参考意义。
+
+<!--more-->
 
 ## 目标明确
 作者工作初期，就希望提前退休，退休不是指不再工作，而是不需要工作就能做自己想做的事情。当时年薪 15 万美元，要 15 年才能攒够 100 万，这太漫长了，作者甚至很沮丧。但经过努力、独立思考，作者想到靠投资房地产，退休后收租实现自己提前退休的目标。

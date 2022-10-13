@@ -3,22 +3,26 @@ title: "Blog New Start"
 date: 2019-03-27T22:32:01+08:00
 draft: true
 index: 1
+toc: true
 categories:
     - 建站
 tags:
     - blog
     - hugo
     - hugo-theme-stack
-image: https://raw.githubusercontent.com/adolphlwq/osshub/master/oss/banner/typewriter-2.jpg
 description: 本文介绍使用 Hugo 搭建个人博客，涉及主题选择与配置、部署、访问加速、SEO 优化等
 slug: blog-new-start
 ---
+
+![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/banner/typewriter-2.jpg)
 
 ## 简介
 这算是个人博客的第三版了，从 2015 年开始写博客，主要经历以下演进过程：
 1. 2015-2017，Hexo + GitHub Pages 阶段。起始于 2015 年，当时用的主题是 Pacman。后来觉得内容过于幼稚，升级 Ghost 时就没有保存内容
 2. 2017-2019，Ghost + VPS 阶段。起始于 2017 年左右吧，部署在个人的 VPS 上，停用后把备份在了 [blog-archive](https://github.com/adolphlwq/blog-archive)。
 3. 2019-2022，将博客备份在 [blog-archive](https://github.com/adolphlwq/blog-archive) 后就不再打理，半弃坑状态。
+
+<!--more-->
 
 ## 为什么使用 Hugo
 **一个字，快！**，hugo 生成站点的速度非常快，速度是 Hexo 的 10 倍，自己基于 [pinlyu 站点仓库](https://github.com/leirock/blog) 的 66 篇博客文章测试，分别使用 Hexo 和 Hugo 生成站点，它们的耗时如下：
