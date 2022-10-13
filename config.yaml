@@ -148,15 +148,15 @@ menus:
       pre: archive
       weight: 4
     - identifier: flinks
-      name: 站点示例
+      name: 收藏
       pageref: /favorite
       pre: thumbs-up
-      weight: 3
+      weight: 5
     - identifier: commonweal
       name: 公益 404
       url: /404.html
       pre: heartbeat
-      weight: 5
+      weight: 6
 
 #-----------------------------------------
 # Hugo NexT 主题参数配置
@@ -190,16 +190,16 @@ params:
   # Site Information Settings
   author: alwqx
   subtitle: Stay Hungry, Stay Foolish
-  description: 保持简单的易用性和强大的功能。
-  keywords: Hugo,NexT,主题,简单,强大
+  description: 求知若饥 虚心若愚
+  keywords: 博客,软件工程师,终生学习,Next
 
   # 不同尺寸站点图标
   # Different size of favicon
   favicon:
-    icon: /imgs/icons/favicon.ico
-    small: /imgs/icons/favicon_16x16_next.png
-    medium: /imgs/icons/favicon_32_32_next.png
-    appleTouchIcon: /imgs/icons/apple_touch_icon_next.png
+    icon: https://raw.githubusercontent.com/alwqx/osshub/master/oss/facivon/glider.ico
+    small: https://raw.githubusercontent.com/alwqx/osshub/master/oss/facivon/glider.ico
+    medium: https://raw.githubusercontent.com/alwqx/osshub/master/oss/facivon/glider.ico
+    appleTouchIcon: https://raw.githubusercontent.com/alwqx/osshub/master/oss/facivon/glider.ico
 
   # 自定义 Logo （目前只支持 Mist 页面模式）
   # Custom Logo (Warning: Only support scheme Mist)
@@ -294,7 +294,7 @@ params:
   avatar:
     # 设置显示头像的相对路径
     # Replace the default image and set the url here.
-    url: /imgs/hugo_next_avatar.png
+    url: https://raw.githubusercontent.com/alwqx/osshub/master/oss/site/avatar.png
     # 开启头像的圆形显示效果
     # If true, the avatar will be displayed in circle.
     rounded: true
@@ -410,7 +410,7 @@ params:
       name: fa fa-heart
       # 开启图标动画效果
       # If you want to animate the icon, set it to true.
-      animated: true
+      animated: false
       # 使用16进制设置图标的颜色
       # Change the color of icon, using Hex Code.
       color: "#ff0000"
@@ -445,18 +445,18 @@ params:
       # 供应商列表，请将带有图标的供应商放在前面
       # Vendors list, remember that who with logo image need put in top.
       list:
-        - name: Vercel
-          image:
-            url: /imgs/vendors/vercel.svg
-            width: 50
-          link: https://vercel.com
+        # - name: Vercel
+        #   image:
+        #     url: /imgs/vendors/vercel.svg
+        #     width: 50
+        #   link: https://vercel.com
         - name: 又拍云
           image:
             url: /imgs/vendors/upyun.png
             width: 43
           link: https://upyun.com
-        - name: Webify
-          link: https://webify.cloudbase.net
+        # - name: Webify
+        #   link: https://webify.cloudbase.net
 
 
   # ---------------------------------------------------------------
@@ -516,8 +516,8 @@ params:
     # Donate type
     # Usage: `name:image url`
     reward:
-      wechatpay: /imgs/wechat-pay.png
-      alipay: /imgs/ali-pay.png
+      wechatpay: https://raw.githubusercontent.com/alwqx/osshub/master/oss/finance/wechatpay.png
+      alipay: https://raw.githubusercontent.com/alwqx/osshub/master/oss/finance/alipay.png
       #paypal: /images/paypal.png
       #bitcoin: /images/bitcoin.png
 
@@ -615,7 +615,7 @@ params:
   bookmark:
     # 开启书签功能
     # If true, will display bookmark in all page.
-    enable: true
+    enable: false
     # 自定义书签显示颜色
     # Customize the color of the bookmark.
     color: "#222"
@@ -944,7 +944,7 @@ params:
     busuanzi:
       visitorsIcon: fa fa-user
       viewsIcon: fa fa-eye
-      postViews: true
+      postViews: false
 
 
   # ---------------------------------------------------------------
