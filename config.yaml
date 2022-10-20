@@ -429,11 +429,11 @@ params:
     beian:
       enable: true
       # ICP 备案的具体信息
-      icp: 沪ICP备2022029307号-1
+      icp: 沪ICP备2022029307号
       # 公安网备的省份简称
       provinceAbbr: 沪
       # 公安网备案号
-      gonganNum:
+      gonganNum: 31011002006009
 
     # 站点支持供应商列表
     # Vendors list who support website.
