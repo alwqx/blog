@@ -818,7 +818,7 @@ params:
   # Waline comments system
   # More info seee: https://waline.js.org/
   waline:
-    pageView: '#waline-pageview-count'
+    pageView: false
     placeholder: "请文明发言哟 ヾ(≧▽≦*)o"
     sofa: "快来发表你的意见吧 (≧∀≦)ゞ"
     emoji: false
@@ -1099,15 +1099,20 @@ params:
   # CDN Settings
   # ---------------------------------------------------------------
 
+  # ---------------------------------------------------------------
+  # CDN 服务（暂时只支持 unpkg 和 cndjs）
+  # CDN Settings
+  # ---------------------------------------------------------------
+
   vendors:
     # The CDN provider of NexT internal scripts.
-    # Available values: local | unpkg | cdnjs | custom
+    # Available values: local | unpkg | cdnjs | qiniu | bootcdn | custom
     # Warning: If you are using the latest master branch of NexT, please set `internal: local`
     internal: local
     # The default CDN provider of third-party plugins.
-    # Available values: local | unpkg | cdnjs | custom
+    # Available values: local | unpkg | cdnjs| qiniu | bootcdn | custom
     # Dependencies for `plugins: local`: https://github.com/next-theme/plugins
-    plugins: unpkg
+    plugins: qiniu
     # TODO
     # Custom CDN URL
     # For example:
