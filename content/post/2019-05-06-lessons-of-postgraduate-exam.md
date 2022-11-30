@@ -14,7 +14,7 @@ slug: lessons-of-postgraduate-exam
 toc: true
 ---
 
-![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/banner/flower_00.jpg)
+![](https://alwq.site/banner/flower_00.jpg)
 
 ## 背景
 本科计算机科学与技术专业，2016 年 6 月毕业，工作两年于 2018.7.20 辞职考研，目标专业是`计算机技术专业硕士`，一战上岸上海 985。

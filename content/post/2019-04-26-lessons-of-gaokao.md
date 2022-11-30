@@ -15,7 +15,7 @@ slug: lessons-of-gaokao
 toc: true
 ---
 
-![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/banner/flower_00.jpg)
+![](https://alwq.site/banner/flower_00.jpg)
 
 我是 2012 年 6.789 三天参加高考，到现在 (`2018.7.23`) 过去了 6 年，这是我第一次回顾总结高考的经验与教训，为我接下来的考试提供参考。
 

@@ -14,7 +14,7 @@ slug: harvest-and-regret-of-postgraduate
 toc: true
 ---
 
-![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/banner/flower_00.jpg)
+![](https://alwq.site/banner/flower_00.jpg)
 
 # 读研时间线
 ## 2018.7-2019.3 复习备考阶段

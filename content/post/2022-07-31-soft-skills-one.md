@@ -14,7 +14,7 @@ categories:
 toc: true
 ---
 
-![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/banner/girl-reading.jpg)
+![](https://alwq.site/banner/reading-girl.jpg)
 
 # 职业之路-如何实现在 33 岁时退休的
 作者很早就知道自己想要什么，**自从我开始工作，我的目标就是提前退休**，提前退休的含义，**是生活中能够自由自在地做自己想做的事情**。
