@@ -146,11 +146,16 @@ menus:
       name: 归档
       pageref: /archives
       pre: archive
-      weight: 4
+      weight: 3
     - identifier: flinks
       name: 收藏
       pageref: /favorite
       pre: thumbs-up
+      weight: 4
+    - identifier: health
+      name: 健康
+      pageref: /health
+      pre: carrot
       weight: 5
     - identifier: commonweal
       name: 公益 404
@@ -166,7 +171,7 @@ params:
   # 需要显示文章的部分，即content目录下的文件夹名称
   # Sections for show in home & archive page
   # and it's forlder name which under content
-  mainSections: ["post"]
+  mainSections: ["post", "reading"]
   # 年，月，日及时间的格式化样式
   # Format style for year,month,date & time
   yearFormat: "2006"
