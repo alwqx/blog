@@ -12,13 +12,13 @@
 
 # 站点域名，比如： https://hugo-next.eu.org
 # Website domain, eg: https://hugo-next.eu.org
-baseURL: https://alwqx.xyz/
+baseURL: https://alwq.xyz
 # 站点标题
 # Website title
 title: 机器学习与系统
 # 主题名称
 # Theme name
-theme: hugo-theme-next
+theme: next
 # 站点默认的语言和代码
 # Default laguage & code for website
 defaultContentLanguage: zh-cn
@@ -188,8 +188,7 @@ params:
 
   # 开启暗模式
   # Dark Mode
-  darkmode: true
-
+  darkmode: false
 
   # 站点基本信息
   # Site Information Settings
@@ -240,9 +239,9 @@ params:
   openGraph:
     enable: true
     #twitter:
-     #creator: <twitter:creator>
-     #image: <twitter:image>
-     #site: <twitter:site>
+    #creator: <twitter:creator>
+    #image: <twitter:image>
+    #site: <twitter:site>
     #googlePlus: <g+:profile_link>
     #facebook:
     #  admins: <fb:admin_id>
@@ -254,7 +253,6 @@ params:
     icons: true
     transition: false
     badges: true
-
 
   # ---------------------------------------------------------------
   # 侧边栏设置
@@ -393,7 +391,6 @@ params:
     # Maximum heading depth of generated toc.
     maxDepth: 3
 
-
   # ---------------------------------------------------------------
   # 站点底部设置
   # Footer Settings
@@ -463,7 +460,6 @@ params:
         # - name: Webify
         #   link: https://webify.cloudbase.net
 
-
   # ---------------------------------------------------------------
   # 文章参数设置
   # Post Settings
@@ -490,7 +486,20 @@ params:
       anotherDay: true
     categories: true
     wordCount: true
-    readTime: true
+    readTime:
+      true
+      # 是否开启评论数显示
+    comments:
+      enable: true
+      # 评论统计插件，暂只支持waline
+      # Comment counter plugin, only support waline
+      plugin: waline
+    # 是否开启页面访问数显示
+    views:
+      enable: false
+      # 页面访问统计插件，支持busuanzi, waline, leancloud
+      # Page views counter plugin, support: busuanzi, waline, leancloud
+      plugin: busuanzi
 
   # 文章底部的设置
   # Post footer settings
@@ -542,7 +551,6 @@ params:
   postEdit:
     enable: true
     url: https://github.com/alwqx/blog/tree/main/content/
-
 
   # 设置文本的对齐方式
   # Set the text alignment in posts / pages.
@@ -644,7 +652,6 @@ params:
     # Show this title when cursor move on.
     title: Follow me on GitHub
 
-
   # ---------------------------------------------------------------
   # TODO
   # 字体设置（暂时未实现）
@@ -698,7 +705,6 @@ params:
       external: true
       family:
 
-
   # ---------------------------------------------------------------
   # SEO 设置
   # SEO Settings
@@ -731,7 +737,6 @@ params:
   # Baidu Webmaster tools verification.
   # See: https://ziyuan.baidu.com/site
   baiduSiteVerification: #<verify_code>
-
 
   # ---------------------------------------------------------------
   # 第三方插件和服务设置
@@ -779,7 +784,6 @@ params:
     timeout: 3000
     # Default (true) will attempt to use the fetch() API if supported (rather than link[rel=prefetch]).
     priority: true
-
 
   # ---------------------------------------------------------------
   # 评论功能设置
@@ -829,9 +833,9 @@ params:
     emoji: false
     imgUploader: false
     wordLimit: 200
-    requiredMeta: ['nick', 'mail']
+    requiredMeta: ["nick", "mail"]
     reaction: true
-    reactionText: [ '点赞', '踩一下', '得意', '不屑', '尴尬', '睡觉']
+    reactionText: ["点赞", "踩一下", "得意", "不屑", "尴尬", "睡觉"]
     reactionTitle: "你认为这篇文章怎么样？"
     serverURL: https://blogcomment-puce.vercel.app
 
@@ -904,7 +908,6 @@ params:
     # Available values: light | light_high_contrast | light_protanopia | light_tritanopia | dark | dark_high_contrast | dark_protanopia | dark_tritanopia | dark_dimmed | transparent_dark | preferred_color_scheme
     theme: preferred_color_scheme
 
-
   # ---------------------------------------------------------------
   # 文章小组件和分享服务设置
   # Post Widgets & Content Sharing Services
@@ -916,15 +919,14 @@ params:
   # To get your ID visit https://widgetpack.com
   rating:
     enable: false
-    id:     # <app_id>
-    color:  "#fc6423"
+    id: # <app_id>
+    color: "#fc6423"
 
   # AddThis文章分享功能
   # 更多信息及配置请参考：https://www.addthis.com
   # AddThis Share.
   # See: https://www.addthis.com
   addThisId: ra-627bd0abb7f0f7a1
-
 
   # ---------------------------------------------------------------
   # 站点统计功能
@@ -950,7 +952,6 @@ params:
       visitorsIcon: fa fa-user
       viewsIcon: fa fa-eye
       postViews: false
-
 
   # ---------------------------------------------------------------
   # 内容搜索服务
@@ -989,7 +990,9 @@ params:
     # 页面加载时是否要重新载入索引文件
     # Preload the search data when the page loads.
     preload: false
-
+    # 索引生成内容长度字数限制
+    # Index generation content length word count limit.
+    limit: 1000
 
   # ---------------------------------------------------------------
   # 在线聊天服务
@@ -1008,7 +1011,6 @@ params:
   gitter:
     enable: false
     room: hugo-next/community
-
 
   # ---------------------------------------------------------------
   # TODO
@@ -1054,7 +1056,6 @@ params:
       light: default
       dark: dark
 
-
   # ---------------------------------------------------------------
   # 动画效果设置
   # Animation Settings
@@ -1097,12 +1098,6 @@ params:
     size: 300 # The width of the ribbon
     alpha: 0.6 # The transparency of the ribbon
     zIndex: -1 # The display level of the ribbon
-
-
-  # ---------------------------------------------------------------
-  # CDN 服务（暂时只支持 unpkg 和 cndjs）
-  # CDN Settings
-  # ---------------------------------------------------------------
 
   # ---------------------------------------------------------------
   # CDN 服务（暂时只支持 unpkg 和 cndjs）
