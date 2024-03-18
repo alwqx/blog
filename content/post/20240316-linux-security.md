@@ -7,7 +7,10 @@ math:
 license:
 hidden: false
 comments: true
-draft: true
+draft: false
+categories:
+  - Linux
+toc: true
 ---
 
 ## 前言
@@ -152,5 +155,5 @@ yes
 服务端报错：
 
 ```shell
-2024/03/18 03:31:40 [Warning] [615604978] app/proxyman/inbound: connection ends > proxy/vless/inbound: 26b3d2a9-254b-42cf-8e80-dfada3f184ee is not able to use xtls-rprx-vision
+2014/03/18 03:31:40 [Warning] [xxxx] app/proxyman/inbound: connection ends > proxy/vless/inbound: xxx is not able to use xtls-rprx-vision
 ```
