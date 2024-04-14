@@ -123,13 +123,15 @@ running
 1. 80 和 443 端口
 
 ```shell
-sudo firewall-cmd --zone=public --add-port=80/tcp
+sudo firewall-cmd --permanent --zone=public --add-port=80/tcp
 success
-sudo firewall-cmd --zone=public --add-port=443/tcp
+sudo firewall-cmd --permanent --zone=public --add-port=443/tcp
 success
-sudo firewall-cmd --zone=public --add-port=10022/tcp
+sudo firewall-cmd --permanent --zone=public --add-port=10022/tcp
 success
 ```
+
+添加 `--permanent` 参数表示**永久生效**，不加这个参数只会临时生效，firewalld 重启开放的端口会失效。
 
 查看端口开放情况
 
@@ -141,6 +143,53 @@ yes
 sudo firewall-cmd --query-port=10022/tcp
 yes
 ```
+
+### 和 docker 适配
+
+docker 在 Linux 上默认使用 `iptables`，而使用 firewalld 会关闭 iptables 守护进程，导致 docker 无法启动带端口映射的容器。
+
+经过查询，参考下面 2 篇文章，顺利解决上述问题，让 Linux 上的 docker 和 firewalld 和谐相处。
+
+1. 修改 docker 配置，`/etc/docker/daemon.json` 关闭 使用 iptables，重启 docker
+
+```json
+{
+  "iptables": false
+}
+```
+
+2. 配置 firewalld，允许 `docker 容器网络`
+
+```shell
+# Masquerading allows for docker ingress and egress (this is the juicy bit)
+firewall-cmd --zone=public --add-masquerade --permanent
+# Reload firewall to apply permanent rules
+firewall-cmd --reload
+```
+
+3. 允许 docker 容器访问宿主机端口
+
+```shell
+# Show interfaces to find out docker interface name
+ip link show
+
+# Assumes docker interface is docker0
+firewall-cmd --permanent --zone=trusted --add-interface=docker0
+firewall-cmd --reload
+systemctl restart docker
+```
+
+4. 容器网络能访问公网
+
+```shell
+firewall-cmd --permanent --zone=public --add-interface=eth0
+firewall-cmd --reload
+```
+
+参考
+
+- [How to Secure a Docker Host Using Firewalld](https://dev.to/soerenmetje/how-to-secure-a-docker-host-using-firewalld-2joo)
+- [Why Docker and Firewall don’t get along with each other!](https://erfansahaf.medium.com/why-docker-and-firewall-dont-get-along-with-each-other-ddca7a002e10)
 
 ## 科学上网
 
