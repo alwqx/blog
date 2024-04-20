@@ -1,33 +1,38 @@
 ---
 title: "斯坦福大学教授是如何阅读论文的？"
 categories:
-    - 阅读
+  - 阅读
 date: 2019-11-01T19:32:01+08:00
 hidden: false
 comments: true
 draft: false
 ---
 
-![](https://alwq.site/banner/reading-01.jpg)
+![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/banner/reading-01.jpg)
 
 本文整理自斯坦福大学 [David R. Cheriton 教授](http://web.stanford.edu/~cheriton/) 的论文 [How to Read a Paper](https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf)，笔者对其编译提炼，用于指导自己阅读论文，希望对大家有帮助。
 
 <!--more-->
 
 ## “3 遍”阅读法
+
 核心思想是一篇论文至少阅读 3 遍，每一阶段都要达到特定的目标，并为下一个阶段奠定基础：
+
 1. 第一阶段你要能知道论文的`整体想法`
 2. 第二阶段你要能抓住论文的主要内容，但不要考虑细节
 3. 第三阶段你要能够`深入理解论文`
 
 ### 第 1 遍
+
 花 5-10 分钟快速阅读论文，初步判断这篇论文是否值得阅读。注意论文以下部分：
+
 - 标题、摘要和简介
 - 子标题
 - 结论
 - 引用
 
 下面的问题用来检验自己的阅读效果：
+
 1. 论文属于哪个类别
 2. 中心思想是啥
 3. 论文的假设或者方法是正确的吗
@@ -37,7 +42,9 @@ draft: false
 上面的点也可以用来指导自己撰写论文，一般盲审时是按照这个步骤审核的~
 
 ### 第 2 遍
+
 这一遍要更仔细阅读了，但是忽略掉证明等细节。你需要：
+
 1. 仔细阅读文中的图表、示意图和说明，注意图中的坐标轴以及是否有错误、结论是否符合统计数据
 2. 标记下重要的、你没有读过的引用文章
 
@@ -48,6 +55,7 @@ draft: false
 `如果你实在读不下去或者理解不了，那就放弃吧，论文那么多，何必在一棵树上吊死呢。毕竟世上无难事，只要肯放弃。..`
 
 ### 第 3 遍
+
 如果要完全理解一篇论文，你就需要阅读第三遍了。
 
 这一遍读完你要能够独立把论文重写一遍：即假设你就是作者，把作者的工作再做一遍，然后写论文。
@@ -59,14 +67,18 @@ draft: false
 ![](https://raw.githubusercontent.com/adolphlwq/osshub/master/oss/banner/typewriter-2.jpg)
 
 ## 文献调查
+
 “文献调查”是一种有效训练论文阅读技巧的方法，选定一个你不熟悉的领域，然后阅读该领域 10 篇论文，记得使用“3 遍阅读法”：
+
 1. 使用 Google Scholar、CiteSeer 或者中国知网搜索**该领域近期的论文**。快速阅读一遍，对论文做的工作进行简短总结。如果你足够幸运找到了调查性质的论文，那你的文献调查就做完了，读这篇论文就行。
 2. 找到这 10 篇论文中重复的引用和重读的文献作者，看看他们都发布在哪些会议上，一般这些会议就是`顶会`
 3. 到顶会网站查看近期会议记录，快读查找近期被高质量引用的作品，这些作品组成你的文献调查
 
 ## 总结
+
 读者可能觉得工程师不需要读论文，这是一种偏见。在进行一些前沿领域的开发时是需要阅读论文的，从别人的研究成果里汲取营养和灵感，向 tidb、etcd 等开源软件都学习、借鉴了论文中的思想。希望大家重视，成长为真正的研发工程师。
 
 ## 参考
+
 - [S. Peyton Jones, "Research Skills"](https://www.microsoft.com/en-us/research/people/simonpj/)
 - [H. Schulzrinne, “Writing Technical Articles”](http://www.cs.columbia.edu/hgs/etc/writingstyle.html)

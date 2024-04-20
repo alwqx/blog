@@ -14,7 +14,7 @@ description: 本文介绍使用 Hugo 搭建个人博客，涉及主题选择与�
 slug: blog-new-start
 ---
 
-![](https://alwq.site/banner/typewriter-2.jpg)
+![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/banner/typewriter-2.jpg)
 
 ## 简介
 
