@@ -429,18 +429,18 @@ params:
     # Beian ICP and gongan information for Chinese users.
     # See: https://beian.miit.gov.cn, http://www.beian.gov.cn
     beian:
-      enable: true
+      enable: false
       # ICP 备案的具体信息
-      icp: 沪ICP备2022029307号
+      icp:
       # 公安网备的省份简称
-      provinceAbbr: 沪
+      provinceAbbr:
       # 公安网备案号
-      gonganNum: 31011002006009
+      gonganNum:
 
     # 站点支持供应商列表
     # Vendors list who support website.
     vendors:
-      enable: true
+      enable: false
       # 支持说明
       # Some support information description.
       title: 提供CDN/云资源支持
