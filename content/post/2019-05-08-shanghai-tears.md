@@ -15,9 +15,10 @@ slug: lessons-of-gaokao
 toc: true
 ---
 
-![](https://alwq.site/banner/flower_00.jpg)
+![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/banner/flower_00.jpg)
 
 我来过上海很多次，主要是来学习交流的：
+
 - 2015.5 [中国计算机学会青年计算机科技论坛 CCF YOCSEF 上海 : 内存计算技术在大数据领域的发展报告会](https://www.huodongxing.com/event/6278866731000)
 - 2015.6 [AMPCamp@China - 大数据金牌训练营来中国了](https://www.huodongxing.com/event/6279158624300)
 - 2015.6 [DockOne 技术沙龙上海站开始报名啦](https://www.huodongxing.com/event/7282223721600)

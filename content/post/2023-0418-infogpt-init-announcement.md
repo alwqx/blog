@@ -13,7 +13,7 @@ categories:
 toc: true
 ---
 
-![](https://alwq.site/banner/coding.jpg)
+![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/banner/coding.jpg)
 
 > InfoGPT 是笔者学习`ChatGPT`等大语言模型过程中开发的一款`开源软件`，截至 v0.0.14 版本，支持 openai api 代理、电报机器人、微信公众号三个平台。微信公众号集成比较麻烦，会专门开一篇介绍。
 
@@ -28,11 +28,11 @@ toc: true
 1. OpenAI API 代理
 2. ~~共享 API Key~~
 
-![](https://alwq.site/github/infogpt_openai_proxy.gif)
+![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/github/infogpt_openai_proxy.gif)
 
 ## Telegram Bot
 
-![](https://alwq.site/github/infogpt_telegram_2.gif)
+![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/github/infogpt_telegram_2.gif)
 
 ## 二进制运行
 
