@@ -8,7 +8,7 @@ comments: true
 draft: false
 ---
 
-![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/banner/reading-01.jpg)
+![](https://raw.githubusercontent.com/alwqx/picx-images-hosting/master/common/banner/reading-01.jpg)
 
 这本书是我`2012`年在网上买的，那时候 O2O 刚刚起步，我也因接触互联网而与这本书结缘。`当当网`当时搞活动，这本书在当当上评价很高，是小编重点推荐图书。再加上自己刚接触线上商店这么新潮的东西，一激动，就买了下来。
 

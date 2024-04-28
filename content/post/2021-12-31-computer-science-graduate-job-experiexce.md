@@ -14,7 +14,7 @@ slug: computer-science-graduate-job-experiexce
 toc: true
 ---
 
-![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/banner/job-00.webp)
+![](https://raw.githubusercontent.com/alwqx/picx-images-hosting/master/common/banner/job-00.webp)
 
 # 2021 计算机研究生秋招总结
 

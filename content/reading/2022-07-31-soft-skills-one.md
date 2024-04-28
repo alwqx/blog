@@ -14,7 +14,7 @@ categories:
 toc: true
 ---
 
-![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/banner/reading-00.jpg)
+![](https://raw.githubusercontent.com/alwqx/picx-images-hosting/master/common/banner/reading-00.jpg)
 
 # 职业之路-如何实现在 33 岁时退休的
 
