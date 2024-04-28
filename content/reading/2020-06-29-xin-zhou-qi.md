@@ -9,7 +9,7 @@ comments: true
 draft: false
 ---
 
-![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/banner/reading-00.jpg)
+![](https://raw.githubusercontent.com/alwqx/picx-images-hosting/master/common/banner/reading-00.jpg)
 
 ## 序言
 

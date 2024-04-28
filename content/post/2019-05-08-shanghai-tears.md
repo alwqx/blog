@@ -15,7 +15,7 @@ slug: lessons-of-gaokao
 toc: true
 ---
 
-![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/banner/flower_00.jpg)
+![](https://raw.githubusercontent.com/alwqx/picx-images-hosting/master/common/banner/flower_00.jpg)
 
 我来过上海很多次，主要是来学习交流的：
 

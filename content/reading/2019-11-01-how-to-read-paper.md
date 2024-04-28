@@ -8,7 +8,7 @@ comments: true
 draft: false
 ---
 
-![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/banner/reading-01.jpg)
+![](https://raw.githubusercontent.com/alwqx/picx-images-hosting/master/common/banner/reading-01.jpg)
 
 本文整理自斯坦福大学 [David R. Cheriton 教授](http://web.stanford.edu/~cheriton/) 的论文 [How to Read a Paper](https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf)，笔者对其编译提炼，用于指导自己阅读论文，希望对大家有帮助。
 
@@ -64,7 +64,7 @@ draft: false
 
 初学者可能需要 4 到 5 小时，经验丰富大概要 1 小时。
 
-![](https://raw.githubusercontent.com/adolphlwq/osshub/master/oss/banner/typewriter-2.jpg)
+![](https://raw.githubusercontent.com/adolphlwq/picx-images-hosting/master/common/banner/typewriter-2.jpg)
 
 ## 文献调查
 

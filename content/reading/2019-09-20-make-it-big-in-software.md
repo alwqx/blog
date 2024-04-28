@@ -8,7 +8,7 @@ comments: true
 draft: false
 ---
 
-![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/banner/reading-00.jpg)
+![](https://raw.githubusercontent.com/alwqx/picx-images-hosting/master/common/banner/reading-00.jpg)
 
 > 这本书比《编程大师访谈录》要好，内容上结构化，从软件工程师职业发展不同阶段来介绍内容，一位大师的访谈和一篇总结交替，对于不同年龄、不同阶段的从业者来说，都能够根据自身的问题找到参考内容。
 

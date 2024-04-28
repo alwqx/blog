@@ -14,7 +14,7 @@ slug: harvest-and-regret-of-postgraduate
 toc: true
 ---
 
-![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/banner/flower_00.jpg)
+![](https://raw.githubusercontent.com/alwqx/picx-images-hosting/master/common/banner/flower_00.jpg)
 
 # 读研时间线
 

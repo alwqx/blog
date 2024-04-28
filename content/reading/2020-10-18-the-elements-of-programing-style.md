@@ -10,7 +10,7 @@ draft: false
 
 本书的作者之一是`Brian W. Kernighan`，一位著作颇丰的计算机科学家，代表作有《The C Programming Language》。本书是 Kernighan 的早期作品，介绍作者认为在编程中应该遵循的一些风格，有些风格笔者在编程中进行过实践，但没有像 Kernighan 这样进行系统性提炼和总结。笔者也借阅读本书把精华内容提炼出来，用于复习鞭策，也希望能帮助到大家。
 
-![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/reading/bcgd-arc.png)
+![](https://raw.githubusercontent.com/alwqx/picx-images-hosting/master/common/reading/bcgd-arc.png)
 
 <!--more-->
 

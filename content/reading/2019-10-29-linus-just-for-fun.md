@@ -8,7 +8,7 @@ comments: true
 draft: false
 ---
 
-![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/banner/reading-01.jpg)
+![](https://raw.githubusercontent.com/alwqx/picx-images-hosting/master/common/banner/reading-01.jpg)
 
 学习是为了兴趣，在学习中找到有趣的地方，学习有趣的东西，保持好奇心
 

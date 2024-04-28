@@ -14,7 +14,7 @@ slug: lessons-of-postgraduate-exam
 toc: true
 ---
 
-![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/banner/flower_00.jpg)
+![](https://raw.githubusercontent.com/alwqx/picx-images-hosting/master/common/banner/flower_00.jpg)
 
 ## 背景
 

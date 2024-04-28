@@ -200,10 +200,10 @@ params:
   # 不同尺寸站点图标
   # Different size of favicon
   favicon:
-    icon: https://raw.githubusercontent.com/alwqx/osshub/master/oss/facivon/glider.ico
-    small: https://raw.githubusercontent.com/alwqx/osshub/master/oss/facivon/glider.ico
-    medium: https://raw.githubusercontent.com/alwqx/osshub/master/oss/facivon/glider.ico
-    appleTouchIcon: https://raw.githubusercontent.com/alwqx/osshub/master/oss/facivon/glider.ico
+    icon: https://raw.githubusercontent.com/alwqx/picx-images-hosting/master/common/site/glider.ico
+    small: https://raw.githubusercontent.com/alwqx/picx-images-hosting/master/common/site/glider.ico
+    medium: https://raw.githubusercontent.com/alwqx/picx-images-hosting/master/common/site/glider.ico
+    appleTouchIcon: https://raw.githubusercontent.com/alwqx/picx-images-hosting/master/common/site/glider.ico
 
   # 自定义 Logo （目前只支持 Mist 页面模式）
   # Custom Logo (Warning: Only support scheme Mist)
@@ -297,7 +297,7 @@ params:
   avatar:
     # 设置显示头像的相对路径
     # Replace the default image and set the url here.
-    url: https://raw.githubusercontent.com/alwqx/osshub/master/oss/site/avatar.png
+    url: https://raw.githubusercontent.com/alwqx/picx-images-hosting/master/common/site/avatar.png
     # 开启头像的圆形显示效果
     # If true, the avatar will be displayed in circle.
     rounded: true
@@ -530,8 +530,8 @@ params:
     # Donate type
     # Usage: `name:image url`
     reward:
-      wechatpay: https://raw.githubusercontent.com/alwqx/osshub/master/oss/finance/wechatpay.png
-      alipay: https://raw.githubusercontent.com/alwqx/osshub/master/oss/finance/alipay.png
+      wechatpay: https://raw.githubusercontent.com/alwqx/picx-images-hosting/master/common/finance/wechatpay.png
+      alipay: https://raw.githubusercontent.com/alwqx/picx-images-hosting/master/common/finance/alipay.png
       #paypal: /images/paypal.png
       #bitcoin: /images/bitcoin.png
 
@@ -542,7 +542,7 @@ params:
   followMe:
     #channel0: Twitter || https://twitter.com/username || fab fa-twitter
     #channel1: Telegram || https://t.me/channel_name || fab fa-telegram
-    channel2: WeChat || https://raw.githubusercontent.com/alwqx/osshub/master/oss/wechat/wechat_sysml.jpg || fab fa-weixin
+    channel2: WeChat || https://raw.githubusercontent.com/alwqx/picx-images-hosting/master/common/wechat/wechat_sysml.jpg || fab fa-weixin
     channel3: RSS || /atom.xml || fa fa-rss
 
   # 文章的在线编辑

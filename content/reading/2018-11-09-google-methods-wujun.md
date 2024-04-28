@@ -8,7 +8,7 @@ comments: true
 draft: false
 ---
 
-![](https://raw.githubusercontent.com/alwqx/osshub/master/oss/banner/reading-01.jpg)
+![](https://raw.githubusercontent.com/alwqx/picx-images-hosting/master/common/banner/reading-01.jpg)
 
 > 吴军老师希望读者写一封信，讲讲专栏的计算机思维给我带来了哪些改变、有哪些认识上的提升、给生活和工作带来哪些积极的变化。
 
