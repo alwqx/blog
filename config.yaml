@@ -944,7 +944,7 @@ params:
     #baidu: #<anaytics_id>
     # 谷歌统计
     # Google Analytics
-    google: G-MML5F47PH4
+    # google: G-MML5F47PH4
     # 不蒜子统计
     # Show Views / Visitors of the website / page with busuanzi.
     # For more information: http://ibruce.info/2015/04/04/busuanzi/
