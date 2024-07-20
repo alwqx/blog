@@ -8,6 +8,11 @@ license:
 hidden: false
 comments: true
 draft: false
+categories:
+  - 大模型
+tags:
+  - fastgpt
+toc: true
 ---
 
 ![](https://github.com/alwqx/picx-images-hosting/raw/master/blog/2024/fastgpt_logo.1aow06r8ht.webp)
