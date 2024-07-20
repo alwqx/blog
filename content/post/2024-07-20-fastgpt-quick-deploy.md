@@ -17,13 +17,13 @@ toc: true
 
 ![](https://github.com/alwqx/picx-images-hosting/raw/master/blog/2024/fastgpt_logo.1aow06r8ht.webp)
 
-# 简介
+## 简介
 
 > FastGPT 是一个基于 LLM 大语言模型的**知识库问答系统**，提供开箱即用的数据处理、模型调用等能力。同时可以通过可视化进行**工作流编排**，从而实现复杂的问答场景！
 
 它界面简介美观，功能完备强大。本文将介绍如何基于 Docker 快速部署 FastGPT，该方案非常适合个人或者小型团队。
 
-# 系统要求
+## 系统要求
 
 本方案已经在 Linux 上验证通过，笔者也建议选择 Linux 作为运行 FastGPT 的操作系统。
 
@@ -33,7 +33,7 @@ Apple 芯片的 MacOS 则不能正常运行 FastGPT docker 容器，因为部分
 
 Windows 系统未验证，不过根据一些用户反馈，是能正确运行的，就是需要一定的动手和 Debug 能力。
 
-# 硬件配置
+## 硬件配置
 
 因为 FastGPT 知识库功能需要上传的文档进行向量化并存储到向量数据库中，所以对 CPU、内存和存储有一定要求。
 
@@ -43,7 +43,7 @@ Windows 系统未验证，不过根据一些用户反馈，是能正确运行的
 | 100w 组向量 | 4c8g 50GB   | 4c16g 50GB   |
 | 500w 组向量 | 8c32g 200GB | 16c64g 200GB |
 
-# 依赖软件
+## 依赖软件
 
 - Docker
 - Git
@@ -64,7 +64,7 @@ docker-compose -v
 # 如失效，自行百度~
 ```
 
-# FastGPT 安装
+## FastGPT 安装
 
 架构图如下：
 
@@ -86,7 +86,7 @@ Docker 运行 FastGPT 参考了 [FastGPT 官方文档](https://doc.fastgpt.in/do
    docker compose up -d
    ```
 
-## 更改 FastGPT
+## 更改 FastGPT 配置
 
 参考 [如何自定义配置文件？](https://doc.fastgpt.in/docs/development/docker/#%e5%a6%82%e4%bd%95%e8%87%aa%e5%ae%9a%e4%b9%89%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6)。
 
