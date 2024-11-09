@@ -10,6 +10,7 @@ comments: true
 draft: false
 categories:
   - homelab
+categories:
   - 大模型
 toc: true
 ---
