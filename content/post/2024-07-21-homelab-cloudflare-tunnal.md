@@ -60,6 +60,8 @@ Cloudflare Tunnel 能够保护 web 服务器或应用免受直接攻击，不管
 1. 服务-passwall-规则列表-代理列表，加入域名 `argotunnel.com` 到代理列表
 2. 服务-passwall-DNS-过滤模式 选择 `dns2socks`，Socks 服务器使用默认的
 
+![](https://github.com/alwqx/picx-images-hosting/raw/master/cloudflared-tunnal-trouble.54xs0xjn39.webp)
+
 保存配置生效后，重启 cloudflared，成功启动。
 
 ## 暴露 lobechat 到公网
