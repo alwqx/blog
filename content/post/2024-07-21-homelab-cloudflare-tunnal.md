@@ -55,6 +55,15 @@ Cloudflare Tunnel 能够保护 web 服务器或应用免受直接攻击，不管
 
 看来问题不是用 tcp 或者 udp 请求 dns，而是重启 passwall 服务。
 
+**Update**：从报错信息看，是请求网址 `argotunnel.com` 没有返回预期的结果 origintunneld 导致的。尝试如下操作：
+
+1. 服务-passwall-规则列表-代理列表，加入域名 `argotunnel.com` 到代理列表
+2. 服务-passwall-DNS-过滤模式 选择 `dns2socks`，Socks 服务器使用默认的
+
+![](https://github.com/alwqx/picx-images-hosting/raw/master/cloudflared-tunnal-trouble.54xs0xjn39.webp)
+
+保存配置生效后，重启 cloudflared，成功启动。
+
 ## 暴露 lobechat 到公网
 
 首先暴露的就是 LobeChat 这款大模型 web 前端。
