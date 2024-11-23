@@ -1,7 +1,7 @@
 ---
 title: "我生活的种种模式读后感"
 categories:
-  - 阅读
+  - 读书
 date: 2019-09-10T22:32:01+08:00
 hidden: false
 comments: true

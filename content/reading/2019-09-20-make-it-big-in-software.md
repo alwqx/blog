@@ -1,7 +1,7 @@
 ---
 title: "大师访谈录"
 categories:
-  - 阅读
+  - 读书
 date: 2019-09-20T22:02:01+08:00
 hidden: false
 comments: true

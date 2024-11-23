@@ -2,7 +2,7 @@
 title: "新周期-任泽平"
 description:
 categories:
-  - 阅读
+  - 读书
 date: 2020-06-29T13:56:45+08:00
 hidden: false
 comments: true

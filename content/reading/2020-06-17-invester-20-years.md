@@ -1,7 +1,7 @@
 ---
 title: "一个投资家的 20 年（第 2 版）杨天南"
 categories:
-  - 阅读
+  - 读书
 date: 2020-06-17T13:49:56+08:00
 hidden: false
 comments: true

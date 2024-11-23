@@ -1,7 +1,7 @@
 ---
 title: "林纳斯《只是为了好玩》读后感"
 categories:
-  - 阅读
+  - 读书
 date: 2019-10-29T19:32:01+08:00
 hidden: false
 comments: true

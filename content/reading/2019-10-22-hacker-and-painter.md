@@ -1,7 +1,7 @@
 ---
 title: "成为黑客和画家--《黑客与画家》读后感"
 categories:
-  - 阅读
+  - 读书
 date: 2019-10-22T19:32:01+08:00
 hidden: false
 comments: true

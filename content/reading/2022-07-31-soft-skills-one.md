@@ -10,7 +10,7 @@ comments: true
 draft: false
 slug: soft-skills-one
 categories:
-  - 阅读
+  - 读书
 toc: true
 ---
 
