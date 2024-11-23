@@ -9,8 +9,7 @@ hidden: false
 comments: true
 draft: false
 categories:
-  - 求学
-slug: harvest-and-regret-of-postgraduate
+  - 读书
 toc: true
 ---
 

@@ -1,17 +1,14 @@
 ---
 title: "Blog New Start"
 date: 2019-03-27T22:32:01+08:00
-draft: true
 index: 1
-toc: true
+comments: true
+draft: false
 categories:
-  - 建站
+  - 编程
 tags:
-  - blog
   - hugo
-  - hugo-theme-stack
-description: 本文介绍使用 Hugo 搭建个人博客，涉及主题选择与配置、部署、访问加速、SEO 优化等
-slug: blog-new-start
+toc: true
 ---
 
 ![](https://raw.githubusercontent.com/alwqx/picx-images-hosting/master/common/banner/typewriter-2.jpg)
