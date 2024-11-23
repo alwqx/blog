@@ -5,13 +5,14 @@ date: 2021-11-30T22:36:06+08:00
 image:
 math:
 license:
-categories:
-    - kubernetes
 hidden: false
 comments: true
 draft: false
-slug: k8s-extender-customed-algo
 toc: true
+categories:
+  - 编程
+tags:
+  - kubernetes
 ---
 
 ![](images/2021/liang-arc.png)
@@ -21,11 +22,13 @@ toc: true
 <!--more-->
 
 # k8s 与调度器架构
+
 下图 1-1 是 Kubernetes 的整体架构图，集群节点分为两种角色：`Master 节点`和`Node 节点`。Master 节点是整个集群的管理中心，负责集群管理、容器调度、状态存储等组件都运行在 Master 节点上；Node 节点是实际上的工作节点，负责运行具体的容器。
 
 ![1-1 Kubernetes 整体架构图](images/2021/k8s-arc.png)
 
 Kubernetes 调度器是独立运行的进程，内部运行过程从逻辑上可以分为多个模块。图 1-2 展示了默认调度器内部包含的具体模块，配置模块负责读取调度器相关配置信息，并且根据配置内容初始化调度器。
+
 - 优先队列模块是一个优先堆数据结构，负责将待调度 Pod 根据优先级排序，优先级高的 Pod 排在前面，调度器会轮询优先队列，[当队列中存在待调度 Pod 时就会执行调度过程](http://dx.doi.org/10.24138/jcomss.v16i1.1027)。
 - 调度模块由`算法模块`、`Node 缓存`和`调度扩展点`三部分组成，算法模块提供对 Node 进行评分的一系列基础算法，比如均衡节点 CPU 和内存使用率的 NodeResourcesBalancedAllocation 算法，算法模块是可扩展的，用户可以修改和添加自己的调度算法；Node 缓存模块负责缓存集群节点的最新状态数据，为调度算法提供数据支撑；调度扩展点由一系列扩展点构成，每个扩展点负责不同的功能，最重要的扩展点是 Filter、Score 和 Bind 这三个扩展点。
 - 最后是绑定模块，负责将调度器选择的 Node 和 Pod 绑定在一起。
@@ -39,6 +42,7 @@ Kubernetes 调度器代码采用可插拔的插件化设计思路，包括核心
 ![1-3 Kubernetes 调度器扩展点架构图](images/2021/scheduler-extenders.png)
 
 # 定制化算法方案
+
 如果要实现自定义调度算法，主要有三种方案：
 
 1. 修改默认调度器的源代码，加入自己的调度算法，然后重新编译和部署调度器，论文 [kcss](https://doi.org/10.1007/s11227-020-03427-3) 和 [kubecg](https://doi.org/10.1002/spe.2898) 中的调度器研究基于此方案实现；
@@ -46,14 +50,15 @@ Kubernetes 调度器代码采用可插拔的插件化设计思路，包括核心
 3. 基于 [Kubernetes Scheduler Extender 机制](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/scheduling/scheduler_extender.md)，在扩展调度器中实现自定义算法，论文 [dynamic IO](https://doi.org/10.1145/3407947.3407950) 中的算法实现基于这种方案。
 
 上述三种自定义调度算法实现方案的优缺点见表 2-1。综合来讲，
+
 - 方案 1 改动最小，但是这样做会破坏开源软件的可维护性，当 Kubernetes 主干代码更新时，改动后的调度器要和上游代码保持一致，**这会带来大量的维护和测试工作**。
 - 方案 2 是实现自己的调度器，并且在集群中运行多个调度器，多个调度器之间没有集群资源数据同步，存在并发调度数据竞争和数据不一致的问题。
 - 方案 3 需要默认调度器通过 API 和 Extender 交互，新增的网络请求会增加整个调度过程的耗时。
 
 2-1 自研调度算法方案对比
 
-| 方案                    | 优点         | 缺点                 |
-| :---------------------- | :----------- | :------------------- |
+| 方案                     | 优点         | 缺点                 |
+| :----------------------- | :----------- | :------------------- |
 | 方案 1：修改调度器源代码 | 改动小       | 破坏源代码、不好维护 |
 | 方案 2：运行多个调度器   | 不改动源代码 | 存在数据竞争、不一致 |
 | 方案 3：开发扩展调度器   | 不改动源代码 | 存在网络耗时         |
@@ -62,19 +67,19 @@ Kubernetes 调度器代码采用可插拔的插件化设计思路，包括核心
 
 ```json
 {
-    "kind": "Policy",
-    "apiVersion": "v1",
-    "extenders": [
-        {
-            "urlPrefix": "http://localhost:8000/v1",
-            "prioritizeVerb": "prioritizeVerb",
-            "weight": 1,
-            "enableHttps": false,
-            "httpTimeout": 1000000000,
-            "nodeCacheCapable": true,
-            "ignorable": false
-        }
-    ]
+  "kind": "Policy",
+  "apiVersion": "v1",
+  "extenders": [
+    {
+      "urlPrefix": "http://localhost:8000/v1",
+      "prioritizeVerb": "prioritizeVerb",
+      "weight": 1,
+      "enableHttps": false,
+      "httpTimeout": 1000000000,
+      "nodeCacheCapable": true,
+      "ignorable": false
+    }
+  ]
 }
 ```
 
@@ -83,6 +88,7 @@ Kubernetes 调度器代码采用可插拔的插件化设计思路，包括核心
 ![2-1 扩展调度器通过配置文件传递给默认调度器启动示意图](images/2021/new-k8s-scheduler-start.png)
 
 # 扩展调度器 Liang
+
 扩展调度器 Liang 独立于 Kubernetes 默认调度器，Liang 的模块设计和组织架构如图 3-1 所示，包括多维资源采集存储和 API 服务两大部分。多维资源数据采集通过在集群中运行 Prometheus 和 node-exporter 实现，扩展调度器 Liang 负责从 Prometheus 获取多维指标然后运用调度算法，将结果返回给默认调度器。
 
 ![3-1 扩展调度器 Liang 整体架构图](images/2021/liang-arc.png)
@@ -106,6 +112,7 @@ Kubernetes 调度器代码采用可插拔的插件化设计思路，包括核心
 | 扩展调度器-不使用缓存 | 1110.439ms   |
 
 ## BNP 算法
+
 BNP 算法在 Liang 中实现，它将网络 IO 使用情况纳入 k8s 调度算法的考量，能够均衡集群中的网络 IO 用量。
 
 图 3-2 是实验中默认调度算法和 BNP 算法中，整个集群中网络 IO 资源的变化情况，每部署一个 Pod 统计一次数据，共部署九个 Pod。可以明显看到，BNP 实验中网络 IO 资源要比默认调度算法分配更均衡。
@@ -113,11 +120,13 @@ BNP 算法在 Liang 中实现，它将网络 IO 使用情况纳入 k8s 调度算
 ![3-2 bnp 算法网络 IO 使用率变化情况](images/2021/bnp-net-by-pods.png)
 
 ## CMDN 算法
+
 CMDN 算法在 Liang 中实现，它的目标是让集群中的多维资源分配更加均衡或者更加紧凑，核心步骤是针对 CPU、内存、磁盘 IO 和网络 IO 以及网卡带宽这五个指标进行综合排序，选择最佳 Node 部署 Pod。图 3-3 是实验中 CPU 使用率变化对比情况，可以明显看到，CMDN 均衡策略下 CPU 使用率均衡程度要比默认调度算法分配更均衡。
 
 ![3-3 cmdn 算法均衡策略下 CPU 使用率变化情况](images/2021/cmdn-min-cpu-by-pods.png)
 
 # 总结
+
 **Kubernetes 调度算法的通用性削弱了算法的定制性**。本文研究了 k8s 调度器架构和扩展机制，对比了三种定制化调度算法方案，选择扩展方案实现`扩展调度器 Liang`，并在 Liang 中实现了两个调度算法 BNP 和 CMDN 用于展示定制化算法能力。
 
 扩展方案极大丰富了定制化调度算法的能力，可以满足非常多定制化场景的需求。同时也需要注意，定制调度算法往往需要更多的数据，这就需要在 k8s 集群中额外部署数据采集模块，增加了运维成本，降低了定制化调度算法的通用性。

@@ -1,7 +1,7 @@
 ---
 title: "《谷歌方法论》收获"
 categories:
-  - 阅读
+  - 读书
 date: 2018-11-09T18:22:01+08:00
 hidden: false
 comments: true

@@ -9,7 +9,7 @@ hidden: false
 comments: true
 draft: false
 categories:
-  - 金融
+  - 投资理财
 toc: true
 ---
 

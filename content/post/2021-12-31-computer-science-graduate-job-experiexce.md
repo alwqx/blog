@@ -9,8 +9,7 @@ hidden: false
 comments: true
 draft: false
 categories:
-  - 职业生涯
-slug: computer-science-graduate-job-experiexce
+  - 写作
 toc: true
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "斯坦福大学教授是如何阅读论文的？"
 categories:
-  - 阅读
+  - 读书
 date: 2019-11-01T19:32:01+08:00
 hidden: false
 comments: true

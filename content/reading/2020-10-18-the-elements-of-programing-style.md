@@ -1,7 +1,7 @@
 ---
 title: "《编程格调》--30 条代码风格帮你更好撸代码"
 categories:
-  - 阅读
+  - 读书
 date: 2020-10-18T14:07:35+08:00
 hidden: false
 comments: true

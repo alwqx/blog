@@ -9,9 +9,9 @@ hidden: false
 comments: true
 draft: false
 categories:
-  - 大模型
+  - 编程
 tags:
-  - lobechat
+  - 大模型
 toc: true
 ---
 

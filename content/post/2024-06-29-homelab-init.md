@@ -9,8 +9,8 @@ hidden: false
 comments: true
 draft: false
 categories:
-  - homelab
-categories:
+  - 编程
+tags:
   - 大模型
 toc: true
 ---

@@ -2,7 +2,7 @@
 title: "全球通史-从史前史到 21 世纪"
 description:
 categories:
-  - 阅读
+  - 读书
 date: 2020-10-04T14:00:28+08:00
 hidden: false
 comments: true

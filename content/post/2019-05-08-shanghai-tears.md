@@ -6,12 +6,10 @@ image:
 math:
 license:
 categories:
-    - 求学
+  - 读书
 hidden: false
 comments: true
 draft: false
-description: 本文介绍笔者对当年高考历程的经验与教训的总结，希望能够给备战高考的学生们一些参考和帮助
-slug: lessons-of-gaokao
 toc: true
 ---
 

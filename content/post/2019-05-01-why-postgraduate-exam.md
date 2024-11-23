@@ -7,10 +7,9 @@ math:
 license:
 hidden: false
 categories:
-  - 求学
+  - 读书
 comments: true
 draft: false
-slug: why-postgraduate-exam
 toc: true
 ---
 
