@@ -1,5 +1,5 @@
 ---
-title: "2024 Distilled"
+title: "2024 年内容精粹"
 description:
 date: 2024-12-06T09:04:59+08:00
 image:
