@@ -142,26 +142,36 @@ menus:
     #   pageref: /flinks.html
     #   pre: thumbs-up
     #   weight: 3
-    - identifier: archives
-      name: 归档
-      pageref: /archives
-      pre: archive
+    - identifier: reading
+      name: 读书
+      pageref: /reading
+      pre: book
       weight: 3
+    - identifier: finance
+      name: 金融投资
+      pageref: /finance
+      pre: coins
+      weight: 4
     - identifier: flinks
       name: 收藏
       pageref: /favorite
       pre: thumbs-up
-      weight: 4
+      weight: 5
     - identifier: health
       name: 健康
       pageref: /health
       pre: carrot
-      weight: 5
+      weight: 6
+    - identifier: archives
+      name: 归档
+      pageref: /archives
+      pre: archive
+      weight: 7
     - identifier: commonweal
       name: 公益 404
       url: /404.html
       pre: heartbeat
-      weight: 6
+      weight: 8
 
 #-----------------------------------------
 # Hugo NexT 主题参数配置

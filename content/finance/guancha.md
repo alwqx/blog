@@ -1,4 +1,16 @@
-# 牛市观察
+---
+title: "牛市观察"
+description:
+date: 2022-12-07T23:37:08+08:00
+image:
+math:
+license:
+hidden: false
+comments: true
+draft: true
+categories:
+  - 投资理财
+---
 
 2024.9.18 美联储 4 年来首次降息，2024.9.24 央行、证监会、金管局联手救市，A 股开始起步，2024.9.26 政治局破例在 9 月开经济会，宣布促进经济发展，实现全年 5%目标。
 
