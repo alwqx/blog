@@ -4,3 +4,9 @@ layouts
 public
 resources
 .DS_Store
+hugo-next.code-workspace
+config_new.yaml
+content/beancount
+content/develop
+content/genius
+content/ollama
