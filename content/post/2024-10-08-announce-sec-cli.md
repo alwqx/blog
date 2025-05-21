@@ -19,6 +19,8 @@ toc: true
 
 ![](https://github.com/alwqx/picx-images-hosting/raw/master/blog/2024/sec_sh.7ljz3hpnf2.webp)
 
+<!--more-->
+
 作为`普通的打工人`，**A 股交易的时间段我们都在干活**，没有时间和精力去看盘，更谈不上买卖股票（上班炒股）了。
 
 为了解决这个问题，笔者开发了一款命令行工具 **sec**，是证券的英文单词`security`的前 3 个字母缩写。

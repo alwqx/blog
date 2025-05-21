@@ -27,6 +27,8 @@ tags:
 
 ![](https://raw.githubusercontent.com/deepseek-ai/open-infra-index/refs/heads/main/202502OpenSourceWeek/figures/Cost%20And%20Theoretical%20Income.jpg)
 
+<!--more-->
+
 ## 系统设计原则
 
 DeepSeek-V3/R1 推理系统的设计以下面原则为基础

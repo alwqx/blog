@@ -17,6 +17,8 @@ toc: true
 
 ![](https://github.com/alwqx/picx-images-hosting/raw/master/blog/2024/lobe-logo.969nnpc3dn.webp)
 
+<!--more-->
+
 ## 为什么部署 LobeChat Database 版本
 
 LobeChat 作为一款`界面美观`、`交互简洁`的大模型前端，非常适合作为 Ollama 运行本地大模型的前端交互界面使用。

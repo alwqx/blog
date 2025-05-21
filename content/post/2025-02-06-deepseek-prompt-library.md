@@ -18,6 +18,8 @@ tags:
 
 ![](https://github.com/alwqx/picx-images-hosting/raw/master/blog/2025/deepseek-prompt-lib.wio8s956t.webp)
 
+<!--more-->
+
 该提示词库是给开发者使用的文档，适用所有兼容 OpenAI API 的大语言模型。事实基本所有开源的大语言模型，都支持 OpenAI 的 API 风格，所以该教程适用所有的模型。
 
 ## 角色
