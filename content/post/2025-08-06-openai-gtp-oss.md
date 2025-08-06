@@ -7,11 +7,11 @@ math:
 license:
 hidden: false
 comments: true
-draft: true
+draft: false
 categories:
   - 编程
 tags:
-  - 写作
+  - 大模型
 ---
 
 ![](https://github.com/alwqx/picx-images-hosting/raw/master/blog/2025/gpt-oss-banner.8adknilhed.webp)
