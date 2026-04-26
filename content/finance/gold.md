@@ -16,6 +16,9 @@ categories:
 
 ## 价格行情
 
+- 上海黄金交易所-行情数据
+  - [行情走势](https://www.sge.com.cn/sjzx/mrhq)
+  - [每日行情](https://www.sge.com.cn/sjzx/quotation_daily_new?start_date=2026-04-24&end_date=2026-04-24)
 - [黄金期货行情](https://quote.cngold.org/qh/shfe_au.html)
 - [金价查询网-黄金价格走势图](http://www.huangjinjiage.cn/zoushitu.html)
 
