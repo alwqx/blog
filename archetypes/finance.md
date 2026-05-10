@@ -1,5 +1,9 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
-description:
-image:
+date: {{ .Date }}
+hidden: false
+comments: true
+draft: false
+categories:
+  - 投资理财
 ---
