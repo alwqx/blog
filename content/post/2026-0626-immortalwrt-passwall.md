@@ -381,3 +381,13 @@ ps | grep -E 'sing-box|xray|chinadns|dnsmasq'
 - 出现问题时先查看日志，而不是反复刷机。
 
 按照这个思路，大多数配置问题都能够较快定位和解决。
+
+## 参考
+
+- [H3C Magic NX30 Pro 刷原版 ImmortalWrt23.05-SNAPSHOT](https://www.cnblogs.com/gloves7/p/18628961)
+- [H3C NX30 Pro 刷官方 ImmortalWrt 教程](https://www.right.com.cn/forum/thread-8301215-1-1.html)
+- [ImmortalWrt H3C Magic NX30 Pro firmware-selector](https://firmware-selector.immortalwrt.org/?version=25.12-SNAPSHOT&target=mediatek%2Ffilogic&id=h3c_magic-nx30-pro)
+- [H3C Magic NX30 Pro 安装原版 ImmortalWrt](https://www.nonedata.com/posts/H3C-NX30PRO.html)
+- [配置启用 macOS 自带 TFTP Server 服务](https://a-nomad.com/mac-tftp)
+- [Howto Start TFTP server on macOS](https://bacnh.com/howto-start-tftp-server-on-macos/)
+- [macOS 下路由器刷机 OpenWrt｜百元 WiFi6 路由器 H3C NX30 Pro 开箱｜路由器小白刷机教程](https://www.youtube.com/watch?v=A1XOlICGVFo)
