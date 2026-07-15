@@ -14,6 +14,16 @@ categories:
 
 1. ROE：return of equity，股本回报率
 
+## 货币
+
+- M0: 流通中的现金
+- M1: M0+企业活期存款
+- M2: M1+准货币（定期存款+居民储蓄存款+其它存款）
+- M1>M2: 实体经济活跃，投资不足
+- M1<M2: 实体经济萎靡，投资过热
+
+![](https://github.com/alwqx/picx-images-hosting/raw/master/blog/2026/M012.1aporxbnwy.webp)
+
 ## 参考
 
 - [股票术语大全中英文对照](https://xueqiu.com/6454808057/159688001)
