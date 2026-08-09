@@ -15,7 +15,7 @@ tags:
   - kubernetes
 ---
 
-![](images/2021/liang-arc.png)
+![扩展调度器 Liang 整体架构图](https://github.com/alwqx/picx-images-hosting/raw/master/blog/2021/liang-arc.6bhshzgota.webp)
 
 随着云计算和容器技术的发展，以 docker 为核心的容器技术迅速在开发者和科技公司中应用，Kubernetes 凭借丰富的企业级、生产级功能成为事实上的容器集群管理系统。可是 k8s 的`通用性`削弱了调度算法的`定制性`，本文将调研定制化调度算法的方法，并且给出一个开源实现 Demo。
 
@@ -25,7 +25,7 @@ tags:
 
 下图 1-1 是 Kubernetes 的整体架构图，集群节点分为两种角色：`Master 节点`和`Node 节点`。Master 节点是整个集群的管理中心，负责集群管理、容器调度、状态存储等组件都运行在 Master 节点上；Node 节点是实际上的工作节点，负责运行具体的容器。
 
-![1-1 Kubernetes 整体架构图](images/2021/k8s-arc.png)
+![1-1 Kubernetes 整体架构图](https://github.com/alwqx/picx-images-hosting/raw/master/blog/2021/k8s-arc.3d5ieh8fbx.webp)
 
 Kubernetes 调度器是独立运行的进程，内部运行过程从逻辑上可以分为多个模块。图 1-2 展示了默认调度器内部包含的具体模块，配置模块负责读取调度器相关配置信息，并且根据配置内容初始化调度器。
 
@@ -33,13 +33,13 @@ Kubernetes 调度器是独立运行的进程，内部运行过程从逻辑上可
 - 调度模块由`算法模块`、`Node 缓存`和`调度扩展点`三部分组成，算法模块提供对 Node 进行评分的一系列基础算法，比如均衡节点 CPU 和内存使用率的 NodeResourcesBalancedAllocation 算法，算法模块是可扩展的，用户可以修改和添加自己的调度算法；Node 缓存模块负责缓存集群节点的最新状态数据，为调度算法提供数据支撑；调度扩展点由一系列扩展点构成，每个扩展点负责不同的功能，最重要的扩展点是 Filter、Score 和 Bind 这三个扩展点。
 - 最后是绑定模块，负责将调度器选择的 Node 和 Pod 绑定在一起。
 
-![1-2 Kubernetes 调度器架构图](images/2021/scheduler-arc.png)
+![1-2 Kubernetes 调度器架构图](https://github.com/alwqx/picx-images-hosting/raw/master/blog/2021/scheduler-arc.77e9xfqd9b.webp)
 
 Kubernetes 调度器代码采用可插拔的插件化设计思路，包括核心部分和可插拔部分。图 1-2 中的配置模块、优先队列和 Node 缓存是核心部分，算法模块、调度扩展点属于可插拔部分。**这种插件化设计允许调度器一些功能通过插件的方式实现，方便代码修改和功能扩展，[同时保持调度器核心代码简单可维护](https://v1-20.docs.kubernetes.io/docs/concepts/scheduling-eviction/scheduling-framework/)。**
 
 下图 1-3 列出了调度器扩展点模块中包含的具体扩展点。Pod 的调度过程分为`调度周期`和`绑定周期`，调度和绑定周期共同构成 Pod 的调度上下文。调度上下文由一系列扩展点构成，每个扩展点负责一部分功能，最重要的扩展点是调度周期中的预选 (Filter) 和优选 (Score) 扩展点和绑定周期中的绑定 (Bind) 扩展点。预选扩展点负责判断每个节点是否能够满足 Pod 的资源需求，不满足就过滤掉该节点。优选扩展点部分会对每个 Pod 运行默认的评分算法，并且将最终评分加权汇总，得到最后所有节点的综合评分；调度器会选择综合评分最高的节点，如果有多个节点评分相同且最高，调度器会通过水塘采样算法在多个节点中随机选择一个作为调度结果，然后将该节点上 Pod 申请的资源用量进行保留操作，防止被其它 Pod 使用。在绑定周期中，调度器将 Pod 绑定到评分最高的节点上，这一步本质是修改 Pod 对象中节点相关的信息，并且更新到存储组件 etcd 中。
 
-![1-3 Kubernetes 调度器扩展点架构图](images/2021/scheduler-extenders.png)
+![1-3 Kubernetes 调度器扩展点架构图](https://github.com/alwqx/picx-images-hosting/raw/master/blog/2021/scheduler-extenders.92quq22sv4.webp)
 
 # 定制化算法方案
 
@@ -85,13 +85,13 @@ Kubernetes 调度器代码采用可插拔的插件化设计思路，包括核心
 
 图 2-1 是带扩展的默认调度器 (kube-scheduler) 启动过程，通过 kube-policy.json 配置文件将扩展调度器 Liang 的配置信息告诉默认调度器。
 
-![2-1 扩展调度器通过配置文件传递给默认调度器启动示意图](images/2021/new-k8s-scheduler-start.png)
+![2-1 扩展调度器通过配置文件传递给默认调度器启动示意图](https://github.com/alwqx/picx-images-hosting/raw/master/blog/2021/new-k8s-scheduler-start.9o0iccx95r.webp)
 
 # 扩展调度器 Liang
 
 扩展调度器 Liang 独立于 Kubernetes 默认调度器，Liang 的模块设计和组织架构如图 3-1 所示，包括多维资源采集存储和 API 服务两大部分。多维资源数据采集通过在集群中运行 Prometheus 和 node-exporter 实现，扩展调度器 Liang 负责从 Prometheus 获取多维指标然后运用调度算法，将结果返回给默认调度器。
 
-![3-1 扩展调度器 Liang 整体架构图](images/2021/liang-arc.png)
+![扩展调度器 Liang 整体架构图](https://github.com/alwqx/picx-images-hosting/raw/master/blog/2021/liang-arc.6bhshzgota.webp)
 
 1. api server 模块，负责实现符合扩展调度器数据格式和传输规范的 API 接口，Liang 接收到 Kubernetes 的评分请求后，解析得到请求中的 Pod 和候选节点信息，作为参数传递给内部的调度算法，得到候选节点的评分结果并返回给默认调度器。
 2. 调度算法模块，扩展调度器 Liang 的核心模块，负责实现自定义的调度算法。得益于扩展调度器机制，Liang 中可以实现多个自定义调度算法。本文主要设计并实现了 BNP 和 CMDN 两个调度算法。
@@ -117,13 +117,13 @@ BNP 算法在 Liang 中实现，它将网络 IO 使用情况纳入 k8s 调度算
 
 图 3-2 是实验中默认调度算法和 BNP 算法中，整个集群中网络 IO 资源的变化情况，每部署一个 Pod 统计一次数据，共部署九个 Pod。可以明显看到，BNP 实验中网络 IO 资源要比默认调度算法分配更均衡。
 
-![3-2 bnp 算法网络 IO 使用率变化情况](images/2021/bnp-net-by-pods.png)
+![3-2 bnp 算法网络 IO 使用率变化情况](https://github.com/alwqx/picx-images-hosting/raw/master/blog/2021/bnp-net-by-pods.5moixyt5ss.webp)
 
 ## CMDN 算法
 
 CMDN 算法在 Liang 中实现，它的目标是让集群中的多维资源分配更加均衡或者更加紧凑，核心步骤是针对 CPU、内存、磁盘 IO 和网络 IO 以及网卡带宽这五个指标进行综合排序，选择最佳 Node 部署 Pod。图 3-3 是实验中 CPU 使用率变化对比情况，可以明显看到，CMDN 均衡策略下 CPU 使用率均衡程度要比默认调度算法分配更均衡。
 
-![3-3 cmdn 算法均衡策略下 CPU 使用率变化情况](images/2021/cmdn-min-cpu-by-pods.png)
+![3-3 cmdn 算法均衡策略下 CPU 使用率变化情况](https://github.com/alwqx/picx-images-hosting/raw/master/blog/2021/cmdn-min-cpu-by-pods.7q0fje0f1.webp)
 
 # 总结
 
