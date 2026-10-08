@@ -1,6 +1,5 @@
 themes/hugo-theme-next
 .hugo_build.lock
-layouts
 public
 resources
 .DS_Store
