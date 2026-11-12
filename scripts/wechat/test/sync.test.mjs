@@ -4,7 +4,7 @@ import { mkdtemp, rm, readFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { syncArticle, adoptDraft } from '../sync.mjs';
-import { WeChatError } from '../api.mjs';
+import { WeChatError, WeChatAPI } from '../api.mjs';
 import { openState } from '../state.mjs';
 
 const clone = (value) => structuredClone(value);
@@ -102,6 +102,76 @@ test('timeout after update is recovered by read-back instead of repeated writes'
   await assert.rejects(syncArticle(f.prepared, f.state, f.api), /timeout/);
   assert.equal((await syncArticle(f.prepared, f.state, f.api)).action, 'unchanged');
   assert.equal(f.calls.updates, 1);
+});
+
+for (const [name, oldHTML, newHTML] of [
+  ['style', '<p style="color:red">正文</p>', '<p style="color:blue">正文</p>'],
+  ['link', '<a href="https://mp.weixin.qq.com/old">正文</a>', '<a href="https://mp.weixin.qq.com/new">正文</a>'],
+  ['code indentation', '<pre><code>if x:<br>\u00a0print(x)</code></pre>', '<pre><code>if x:<br>\u00a0\u00a0\u00a0\u00a0print(x)</code></pre>'],
+]) {
+  test(`retry an unapplied ${name} update instead of adopting its fingerprint`, async () => {
+    const f = setup();
+    f.prepared.html = oldHTML;
+    f.prepared.images = new Map();
+    await syncArticle(f.prepared, f.state, f.api);
+    const update = f.api.updateDraft;
+    f.api.updateDraft = async () => { f.calls.updates++; throw new Error('timeout before write'); };
+    f.prepared.fingerprint = 'second';
+    f.prepared.html = newHTML;
+    await assert.rejects(syncArticle(f.prepared, f.state, f.api), /timeout/);
+    assert.equal(f.state.data.drafts['example:1'].fingerprint, 'first');
+    f.api.updateDraft = update;
+    assert.equal((await syncArticle(f.prepared, f.state, f.api)).action, 'updated');
+    assert.equal(f.calls.updates, 2);
+    assert.equal(f.remote.get('draft-1').content, newHTML);
+    assert.equal((await syncArticle(f.prepared, f.state, f.api)).action, 'unchanged');
+  });
+}
+
+test('a successful style-only update with a lost response is confirmed without writing again', async () => {
+  const f = setup();
+  f.prepared.html = '<p style="color:red">正文</p>';
+  f.prepared.images = new Map();
+  await syncArticle(f.prepared, f.state, f.api);
+  const update = f.api.updateDraft;
+  f.api.updateDraft = async (...args) => { await update(...args); throw new Error('response lost'); };
+  f.prepared.html = '<p style="color:blue">正文</p>';
+  f.prepared.fingerprint = 'second';
+  await assert.rejects(syncArticle(f.prepared, f.state, f.api), /response lost/);
+  assert.equal((await syncArticle(f.prepared, f.state, f.api)).action, 'unchanged');
+  assert.equal(f.calls.updates, 1);
+});
+
+test('a manual style edit during pending recovery is preserved and cannot be adopted', async () => {
+  const f = setup();
+  f.prepared.images = new Map();
+  f.prepared.html = '<p style="color:red">正文</p>';
+  await syncArticle(f.prepared, f.state, f.api);
+  f.api.updateDraft = async () => { throw new Error('timeout'); };
+  f.prepared.html = '<p style="color:blue">正文</p>';
+  f.prepared.fingerprint = 'second';
+  await assert.rejects(syncArticle(f.prepared, f.state, f.api), /timeout/);
+  f.remote.get('draft-1').content = '<p style="color:green">正文</p>';
+  await assert.rejects(syncArticle(f.prepared, f.state, f.api), /尚无法确认/);
+  await assert.rejects(adoptDraft({ key: 'example:1', mediaId: 'draft-1', state: f.state, api: f.api }), /尚无法确认/);
+  assert.equal(f.state.data.drafts['example:1'].fingerprint, 'first');
+  assert.ok(f.state.data.drafts['example:1'].pending);
+  assert.match(f.remote.get('draft-1').content, /green/);
+});
+
+test('cached assets do not turn a token acquisition failure into an uncertain create', async () => {
+  const f = setup();
+  await syncArticle(f.prepared, f.state, f.api);
+  f.prepared.id = 'second-article';
+  const endpoints = [];
+  const api = new WeChatAPI({ appId: 'app', appSecret: 'secret', fetcher: async (url) => {
+    endpoints.push(new URL(url).pathname);
+    throw new Error('token unavailable');
+  } });
+  await assert.rejects(syncArticle(f.prepared, f.state, api), /业务请求尚未发送/);
+  assert.deepEqual(endpoints, ['/cgi-bin/stable_token']);
+  assert.equal(f.state.data.drafts['second-article:1'], undefined);
+  assert.equal((await syncArticle(f.prepared, f.state, f.api)).action, 'created');
 });
 
 test('explicit API rejection can be retried without an ambiguous journal', async () => {

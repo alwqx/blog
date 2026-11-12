@@ -1,8 +1,8 @@
 import { load } from 'cheerio';
-import { snapshot, validatePayload, compactHTML } from './render.mjs';
-import { WeChatError } from './api.mjs';
+import { snapshot, validatePayload, compactHTML, canonicalHTML } from './render.mjs';
+import { WeChatError, RequestNotSentError } from './api.mjs';
 
-export function ensureSaved(remote, expected) {
+export function ensureSaved(remote, expected, { confirmMutation = false } = {}) {
   if (remote.title !== expected.title || remote.author !== expected.author ||
       (expected.digest && remote.digest !== expected.digest) ||
       remote.thumb_media_id !== expected.thumb_media_id ||
@@ -17,6 +17,9 @@ export function ensureSaved(remote, expected) {
   const expectedImages = expectedHTML('img').map((_, element) => expectedHTML(element).attr('src')).get();
   if (JSON.stringify(actualImages) !== JSON.stringify(expectedImages)) {
     throw new Error('草稿回读发现正文图片丢失或顺序变化，请检查草稿。');
+  }
+  if (confirmMutation && canonicalHTML(remote.content) !== canonicalHTML(expected.content)) {
+    throw new Error('尚无法确认更新已保存：正文结构、样式、链接或空白与待确认内容不一致，请核对草稿。');
   }
 }
 
@@ -37,11 +40,18 @@ export async function syncArticle(prepared, state, api) {
   if (record?.pending) {
     if (!record.mediaId) throw new Error(`上次创建结果未知：${key}；请按说明核对并 adopt，禁止直接重建。`);
     const remote = await existingDraft(api, record.mediaId);
-    ensureSaved(remote, record.pending.expected);
-    record.baseline = snapshot(remote);
-    record.fingerprint = record.pending.fingerprint;
-    delete record.pending;
-    await state.save();
+    if (record.baseline && snapshot(remote) === record.baseline) {
+      // The old version is still present. Keep the old fingerprint so the
+      // normal path can safely retry, rather than marking the intent applied.
+      delete record.pending;
+      await state.save();
+    } else {
+      ensureSaved(remote, record.pending.expected, { confirmMutation: true });
+      record.baseline = snapshot(remote);
+      record.fingerprint = record.pending.fingerprint;
+      delete record.pending;
+      await state.save();
+    }
   }
   if (record) {
     const remote = await existingDraft(api, record.mediaId);
@@ -83,7 +93,7 @@ export async function syncArticle(prepared, state, api) {
     else record.mediaId = await api.createDraft(payload);
   } catch (error) {
     // An explicit rejection is safe to retry; network errors retain the journal.
-    if (error instanceof WeChatError) {
+    if (error instanceof WeChatError || error instanceof RequestNotSentError) {
       delete record.pending;
       if (!updating) delete records[key];
       await state.save();
@@ -107,7 +117,7 @@ export async function adoptDraft({ key, mediaId, state, api }) {
   if (!record?.pending) throw new Error('adopt 仅用于恢复结果未知的任务；不用于覆盖人工修改。');
   if (record.mediaId && record.mediaId !== mediaId) throw new Error('此任务已经记录了不同的 media_id。');
   const remote = await api.getDraft(mediaId);
-  ensureSaved(remote, record.pending.expected);
+  ensureSaved(remote, record.pending.expected, { confirmMutation: true });
   record.mediaId = mediaId;
   record.baseline = snapshot(remote);
   record.fingerprint = record.pending.fingerprint;

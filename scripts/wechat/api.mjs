@@ -2,6 +2,8 @@ export class WeChatError extends Error {
   constructor(code, message) { super(`微信接口错误 ${code}：${message}`); this.code = code; }
 }
 
+export class RequestNotSentError extends Error {}
+
 const ALLOWED = new Set(['/cgi-bin/stable_token', '/cgi-bin/media/uploadimg',
   '/cgi-bin/material/add_material?type=thumb', '/cgi-bin/draft/add', '/cgi-bin/draft/update',
   '/cgi-bin/draft/get', '/cgi-bin/draft/batchget']);
@@ -18,7 +20,13 @@ export class WeChatAPI {
     if (!ALLOWED.has(endpoint)) throw new Error('程序仅允许草稿和图片相关接口。');
     let url = `https://api.weixin.qq.com${endpoint}`;
     if (endpoint !== '/cgi-bin/stable_token') {
-      const token = await this.accessToken();
+      let token;
+      try { token = await this.accessToken(); }
+      catch (error) {
+        // Authentication failed before this business request was sent. In
+        // particular, a token timeout is not an uncertain draft mutation.
+        throw new RequestNotSentError(`获取接口凭据失败，业务请求尚未发送：${error.message}`);
+      }
       url += `${endpoint.includes('?') ? '&' : '?'}access_token=${encodeURIComponent(token)}`;
     }
     let response;
@@ -28,12 +36,15 @@ export class WeChatAPI {
         body: form ? body : JSON.stringify(body) });
     } catch {
       // Never print request URLs, access tokens or credential-bearing request bodies.
-      throw new Error('微信请求超时或网络中断，写入结果可能未知；请保留状态文件并按恢复说明处理。');
+      throw new Error(endpoint === '/cgi-bin/stable_token' ? '获取微信接口凭据超时或网络中断。'
+        : '微信请求超时或网络中断，写入结果可能未知；请保留状态文件并按恢复说明处理。');
     }
     let payload;
     try { payload = await response.json(); }
-    catch { throw new Error('微信返回了非 JSON 响应，写入结果可能未知。'); }
-    if (!response.ok) throw new Error(`微信返回 HTTP ${response.status}，写入结果可能未知。`);
+    catch { throw new Error(endpoint === '/cgi-bin/stable_token' ? '微信凭据接口返回了非 JSON 响应。'
+      : '微信返回了非 JSON 响应，写入结果可能未知。'); }
+    if (!response.ok) throw new Error(endpoint === '/cgi-bin/stable_token' ? `微信凭据接口返回 HTTP ${response.status}。`
+      : `微信返回 HTTP ${response.status}，写入结果可能未知。`);
     if (payload.errcode) {
       const hints = { 40164: '出口 IP 不在公众号白名单中。', 48001: '当前公众号未获得此接口权限。',
         89503: '需要公众号管理员确认此次调用。', 40007: '草稿或素材不存在。', 46001: '素材不存在。' };

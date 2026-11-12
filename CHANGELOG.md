@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### Fixed
+
+- Verify pending draft updates before advancing synchronization fingerprints, retry unapplied updates, and preserve conflicting remote edits.
+- Distinguish token acquisition failures from uncertain draft writes so authentication failures do not leave blocked creation journals.
+- Validate preview article IDs and confine automatic output paths, including existing directory symlinks.
+- Resolve site-root, email, and telephone links without treating them as local Markdown files, and preserve table column alignment.
+- Skip Markdown notes without front matter and keep unrelated incomplete article metadata from blocking explicitly selected articles.
+
 ### Added
 
 - Add a local Node.js CLI to preview Markdown articles and create or update WeChat Official Account drafts, with explicit article opt-in and manual publication in WeChat.

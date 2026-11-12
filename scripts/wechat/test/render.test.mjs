@@ -84,6 +84,46 @@ test('local article links use Hugo permalinks; broken attachment links stop the 
   await assert.rejects(renderArticle({ ...f.article, markdown: '[附件](./report.pdf)' }, f.config, f.manifest), /链接无法/);
 });
 
+test('site-root, protocol-relative, email and telephone links become safe references', async (t) => {
+  const f = await fixture(t, '[站内](/post/example/?q=1#part) [站外](//cdn.example.com/page) Contact author@example.com [电话](tel:+12345678)');
+  const result = await renderArticle(f.article, f.config, f.manifest);
+  const $ = load(result.html, {}, false);
+  assert.ok($.root().text().includes('https://blog.example/post/example/?q=1#part'));
+  assert.ok($.root().text().includes('https://cdn.example.com/page'));
+  assert.ok($.root().text().includes('mailto:author@example.com'));
+  assert.ok($.root().text().includes('tel:+12345678'));
+  assert.equal($('a').length, 0);
+  f.manifest.set('content/post/second.md', { permalink: 'https://blog.example/second/' });
+  const linked = await renderArticle({ ...f.article, markdown: '[章节](./second.md#section)' }, f.config, f.manifest);
+  assert.match(linked.html, /https:\/\/blog.example\/second\/#section/);
+  await assert.rejects(renderArticle({ ...f.article, markdown: '<a href="javascript:alert(1)">unsafe</a>' },
+    f.config, f.manifest), /不支持的链接协议/);
+});
+
+test('table alignment survives sanitization in both themes without preserving arbitrary CSS', async (t) => {
+  const f = await fixture(t, '| right | center |\n| ---: | :---: |\n| 1 | 2 |');
+  for (const theme of ['default', 'wechat-format']) {
+    const rendered = await renderArticle(f.article, f.config, f.manifest, { theme });
+    const $ = load(rendered.html, {}, false);
+    assert.equal($('th').eq(0).css('text-align'), 'right');
+    assert.equal($('th').eq(1).css('text-align'), 'center');
+    assert.equal($('td').eq(0).css('text-align'), 'right');
+    assert.equal($('td').eq(1).css('text-align'), 'center');
+    const raw = await renderArticle({ ...f.article, markdown:
+      '<table><tr><td style="text-align:right;color:red;background:url(https://bad.example/image)">value</td></tr></table>' },
+    f.config, f.manifest, { theme });
+    const cells = load(raw.html, {}, false);
+    assert.equal(cells('td').css('text-align'), 'right');
+    assert.notEqual(cells('td').css('color'), 'red');
+    assert.doesNotMatch(raw.html, /bad\.example/);
+  }
+});
+
+test('invalid optional IDs are rejected even for a preview-only article', async (t) => {
+  const f = await fixture(t, '正文', { wechat: { enabled: false, id: '../../outside' } });
+  await assert.rejects(renderArticle(f.article, f.config, f.manifest), /wechat.id/);
+});
+
 test('WebP and SVG images become supported formats, cover is bounded, local paths cannot escape', async (t) => {
   const f = await fixture(t, '![](/images/cover.webp)');
   const rendered = await renderArticle(f.article, f.config, f.manifest);
@@ -131,6 +171,21 @@ test('sync only opts in public articles and detects duplicate stable IDs', async
   assert.equal(isPublic(f.article, f.manifest, Date.parse('2026-01-01')), true);
   f.manifest.get(f.article.relative).publishDate = '2030-01-01';
   assert.equal(isPublic(f.article, f.manifest, Date.parse('2026-01-01')), false);
+});
+
+test('unconfigured Markdown notes do not block scans or explicit article selection', async (t) => {
+  const f = await fixture(t);
+  const post = (id) => `---\ntitle: 示例\ndraft: false\nwechat:\n  enabled: true\n  id: "${id}"\n---\n正文`;
+  await writeFile(f.article.file, post('ready'));
+  await writeFile(path.join(f.config.root, 'content/post/note.md'), 'A plain Markdown note.');
+  assert.deepEqual((await enabledArticles(f.config)).map((a) => a.metadata.wechat.id), ['ready']);
+  await writeFile(path.join(f.config.root, 'content/post/incomplete.md'), post(''));
+  const selected = await enabledArticles(f.config, { file: f.article.relative });
+  assert.deepEqual(selected.map((a) => a.metadata.wechat.id), ['ready']);
+  await assert.rejects(enabledArticles(f.config), /wechat.id/);
+  await assert.rejects(enabledArticles(f.config, { file: 'content/post/incomplete.md' }), /wechat.id/);
+  await writeFile(path.join(f.config.root, 'content/post/duplicate.md'), post('ready'));
+  await assert.rejects(enabledArticles(f.config, { file: f.article.relative }), /重复/);
 });
 
 test('payload limits reject oversized final HTML and unresolved images', () => {

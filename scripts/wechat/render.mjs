@@ -4,7 +4,7 @@ import MarkdownIt from 'markdown-it';
 import hljs from 'highlight.js';
 import juice from 'juice';
 import { load } from 'cheerio';
-import { inside } from './content.mjs';
+import { inside, validateArticleId } from './content.mjs';
 import { loadTheme, prepareQuoteTokens, prepareMdniceDOM, compactInlineStyles } from './themes.mjs';
 
 export const sha256 = (value) => createHash('sha256').update(value).digest('hex');
@@ -38,8 +38,27 @@ export function snapshot(article) {
   }));
 }
 
+export function resolveArticleLink(href, article, config, manifest) {
+  const scheme = /^([a-z][a-z0-9+.-]*):/i.exec(href)?.[1].toLowerCase();
+  if (scheme) {
+    if (!['http', 'https', 'mailto', 'tel'].includes(scheme)) throw new Error(`不支持的链接协议：${scheme}`);
+    new URL(href); // Validate the URI while preserving its displayed spelling.
+    return href;
+  }
+  if (href.startsWith('/')) {
+    return new URL(href, config.baseURL || manifest.get(article.relative)?.permalink).href;
+  }
+  const [, local, suffix = ''] = /^([^?#]*)([?#].*)?$/.exec(href);
+  const relative = path.relative(config.root,
+    path.resolve(path.dirname(article.file), decodeURIComponent(local))).split(path.sep).join('/');
+  const page = manifest.get(relative);
+  if (!local.endsWith('.md') || !page) throw new Error(`链接无法转换为博客地址：${href}`);
+  return page.permalink + suffix;
+}
+
 export async function renderArticle(article, config, manifest, overrides = {}) {
   const settings = article.metadata.wechat || {};
+  validateArticleId(settings.id, { required: false });
   const theme = await loadTheme(overrides.theme ?? settings.theme ?? config.theme ?? 'default', config.root);
   const title = settings.title ?? article.metadata.title;
   const author = settings.author ?? config.author ?? '';
@@ -73,6 +92,11 @@ export async function renderArticle(article, config, manifest, overrides = {}) {
     throw new Error(`${article.relative} 包含微信不支持的嵌入内容，请替换为图片或普通链接。`);
   }
   $('style,link,meta').remove();
+  const alignments = new Map();
+  $('th,td').each((_, cell) => {
+    const alignment = ($(cell).css('text-align') || $(cell).attr('align') || '').trim().toLowerCase();
+    if (['left', 'right', 'center'].includes(alignment)) alignments.set(cell, alignment);
+  });
   const allowed = new Set('p section div span h1 h2 h3 h4 h5 h6 strong b em i del s blockquote ul ol li pre code a img table thead tbody tr th td hr br sup sub figure figcaption'.split(' '));
   $('*').each((_, element) => {
     if (!allowed.has(element.name)) throw new Error(`不支持的 HTML 标签：${element.name}`);
@@ -82,19 +106,14 @@ export async function renderArticle(article, config, manifest, overrides = {}) {
       }
     }
   });
+  // Only restore safe table alignment, never arbitrary author-supplied CSS.
+  for (const [cell, alignment] of alignments) $(cell).css('text-align', alignment);
   const references = [];
   $('a').each((_, element) => {
     const anchor = $(element);
     const href = anchor.attr('href') || '';
     if (href.startsWith('#')) { anchor.replaceWith(anchor.html() || ''); return; }
-    let target = href;
-    if (!/^https?:\/\//i.test(target)) {
-      const local = target.split('#')[0];
-      const relative = path.relative(config.root, path.resolve(path.dirname(article.file), local)).split(path.sep).join('/');
-      const page = manifest.get(relative);
-      if (!page) throw new Error(`链接无法转换为博客地址：${href}`);
-      target = page.permalink;
-    }
+    const target = resolveArticleLink(href, article, config, manifest);
     if (new URL(target).hostname === 'mp.weixin.qq.com') { anchor.attr('href', target); return; }
     let index = references.indexOf(target);
     if (index < 0) { references.push(target); index = references.length - 1; }

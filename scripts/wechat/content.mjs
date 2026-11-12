@@ -27,17 +27,21 @@ export async function configuration(root = repositoryRoot) {
     previewDirectory: path.resolve(root, settings.previewDirectory) };
 }
 
-export function frontMatter(source, filename = 'article.md') {
-  const match = source.replace(/^\uFEFF/, '').match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
-  if (!match) throw new Error(`${filename} 缺少 YAML Front Matter。`);
+export function frontMatter(source, filename = 'article.md', { allowMissing = false } = {}) {
+  const normalized = source.replace(/^\uFEFF/, '');
+  const match = normalized.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
+  if (!match) {
+    if (allowMissing && !/^---(?:\r?\n|$)/.test(normalized)) return { metadata: {}, markdown: normalized };
+    throw new Error(`${filename} 缺少 YAML Front Matter。`);
+  }
   const metadata = yaml.load(match[1], { schema: yaml.CORE_SCHEMA });
   if (!metadata || typeof metadata !== 'object' || Array.isArray(metadata)) {
     throw new Error(`${filename} 的 Front Matter 必须是对象。`);
   }
-  return { metadata, markdown: source.replace(/^\uFEFF/, '').slice(match[0].length) };
+  return { metadata, markdown: normalized.slice(match[0].length) };
 }
 
-export async function readArticle(filename, config) {
+export async function readArticle(filename, config, options = {}) {
   const file = await inside(path.join(config.root, 'content'), path.resolve(config.root, filename));
   const relative = path.relative(await realpath(config.root), file).split(path.sep).join('/');
   if (!config.contentRoots.some((directory) => relative.startsWith(`${directory}/`)) ||
@@ -45,10 +49,31 @@ export async function readArticle(filename, config) {
     throw new Error(`不属于可同步的文章目录：${relative}`);
   }
   const source = await readFile(file, 'utf8');
-  return { file, relative, source, ...frontMatter(source, relative) };
+  return { file, relative, source, ...frontMatter(source, relative, options) };
 }
 
-export async function enabledArticles(config) {
+export function validateArticleId(id, { required = true } = {}) {
+  if (!required && (id === undefined || id === '')) return;
+  if (typeof id !== 'string' || !/^[a-zA-Z0-9][a-zA-Z0-9._-]{0,99}$/.test(id)) {
+    throw new Error('需要稳定的 wechat.id（以字母或数字开头，仅含字母、数字、点、下划线或连字符）。');
+  }
+}
+
+function validateSyncArticle(article) {
+  const settings = article.metadata.wechat;
+  try { validateArticleId(settings.id); }
+  catch (error) { throw new Error(`${article.relative} ${error.message}`); }
+  if (settings.edition !== undefined && (!Number.isSafeInteger(settings.edition) || settings.edition < 1)) {
+    throw new Error(`${article.relative} 的 wechat.edition 必须是正整数。`);
+  }
+}
+
+export async function enabledArticles(config, { file } = {}) {
+  const selected = file ? await readArticle(file, config) : undefined;
+  if (selected && (selected.metadata.wechat?.enabled !== true || selected.metadata.draft === true)) {
+    throw new Error('指定文章未开启 wechat.enabled，或仍为 draft。');
+  }
+  if (selected) validateSyncArticle(selected);
   const files = [];
   async function walk(directory) {
     for (const entry of await readdir(directory, { withFileTypes: true })) {
@@ -65,18 +90,16 @@ export async function enabledArticles(config) {
   const articles = [];
   const ids = new Set();
   for (const filename of files.sort()) {
-    const article = await readArticle(filename, config);
+    const article = await readArticle(filename, config, { allowMissing: true });
     if (article.metadata.wechat?.enabled !== true || article.metadata.draft === true) continue;
     const settings = article.metadata.wechat;
-    if (typeof settings.id !== 'string' || !/^[a-zA-Z0-9][a-zA-Z0-9._-]{0,99}$/.test(settings.id)) {
-      throw new Error(`${article.relative} 需要稳定的 wechat.id（字母、数字、点、下划线或连字符）。`);
-    }
+    // When selecting one article, unrelated incomplete IDs/editions cannot
+    // block it. Still check matching IDs to prevent cross-article overwrites.
+    if (selected && settings.id !== selected.metadata.wechat.id) continue;
+    if (!selected) validateSyncArticle(article);
     if (ids.has(settings.id)) throw new Error(`重复的 wechat.id：${settings.id}`);
     ids.add(settings.id);
-    if (settings.edition !== undefined && (!Number.isSafeInteger(settings.edition) || settings.edition < 1)) {
-      throw new Error(`${article.relative} 的 wechat.edition 必须是正整数。`);
-    }
-    articles.push(article);
+    if (!selected || article.file === selected.file) articles.push(article);
   }
   return articles;
 }

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { parseArgs } from 'node:util';
 import { loadEnvFile } from 'node:process';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { configuration, enabledArticles, hugoManifest, readArticle, isPublic, repositoryRoot } from './content.mjs';
 import { renderArticle, escapeHTML, validatePayload } from './render.mjs';
@@ -9,6 +9,7 @@ import { prepareAssets } from './assets.mjs';
 import { WeChatAPI } from './api.mjs';
 import { openState } from './state.mjs';
 import { syncArticle, adoptDraft } from './sync.mjs';
+import { previewDirectory } from './preview.mjs';
 
 const help = `微信公众号草稿同步（Node >= 22.12，Hugo 0.126）
 
@@ -67,14 +68,10 @@ async function main() {
     if (!values.file) throw new Error('preview 需要 --file 文章路径。');
     articles = [await readArticle(values.file, config)];
   } else {
-    articles = await enabledArticles(config);
-    if (values.file) {
-      const selected = await readArticle(values.file, config);
-      articles = articles.filter((article) => article.file === selected.file);
-      if (!articles.length) throw new Error('指定文章未开启 wechat.enabled，或仍为 draft。');
-    }
+    articles = await enabledArticles(config, { file: values.file });
     if (!articles.length) { console.log('没有开启微信同步的文章；未调用微信接口。'); return; }
   }
+  const directory = command === 'preview' ? await previewDirectory(config, articles[0], values.output) : undefined;
   const manifest = hugoManifest(config.root);
   if (command !== 'preview') {
     articles = articles.filter((article) => isPublic(article, manifest));
@@ -99,9 +96,6 @@ async function main() {
   }
   if (command === 'preview') {
     const item = prepared[0];
-    const directory = values.output ? path.resolve(values.output) : path.join(config.previewDirectory,
-      item.id || path.basename(item.article.file, '.md'));
-    await mkdir(directory, { recursive: true });
     let html = item.html;
     for (const [placeholder, asset] of item.images) {
       const src = asset.offline ? asset.source : `${placeholder}.${asset.type === 'image/png' ? 'png' : 'jpg'}`;
