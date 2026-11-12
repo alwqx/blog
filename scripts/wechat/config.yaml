@@ -1,0 +1,14 @@
+# Paths beginning with / refer to Hugo's static/ directory.
+author: 陆道峰
+# Migrated mdnice「画手」theme. Use default for the original local theme.css.
+theme: wechat-format
+cover: /images/site/avatar.png
+contentRoots:
+  - content/post
+  - content/reading
+  - content/llm
+  - content/genius
+  - content/finance
+  - content/health
+stateDirectory: .wechat/state
+previewDirectory: .wechat/preview

@@ -1,0 +1,24 @@
+{
+  "name": "blog-wechat-drafts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "preview": "node cli.mjs preview",
+    "sync": "node cli.mjs sync"
+  },
+  "dependencies": {
+    "cheerio": "1.2.0",
+    "clean-css": "5.3.3",
+    "csv-parse": "7.0.3",
+    "highlight.js": "11.12.0",
+    "js-yaml": "5.5.0",
+    "juice": "12.2.1",
+    "markdown-it": "15.0.3",
+    "sharp": "0.35.5"
+  }
+}

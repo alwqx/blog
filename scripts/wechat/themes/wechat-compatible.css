@@ -1,0 +1,32 @@
+/* Local adaptations applied after the pinned mdnice base and user theme.
+ * Use actual text and document flow instead of browser-only flex/pseudo layouts.
+ */
+/* These shorthands preserve the base's vertical spacing and zero horizontal
+ * defaults, while removing repeated longhands from the API payload.
+ */
+#nice p { padding: 8px 0; }
+#nice li section { margin: 5px 0; }
+#nice .footnote-item { display: block; }
+#nice .footnote-num { display: inline; width: auto; }
+#nice .footnote-item p { display: inline; width: auto; }
+#nice figure,
+#nice figure a,
+#nice figure a + figcaption { display: block; }
+#nice figure a + figcaption {
+  margin-top: 5px;
+  background: none;
+  color: #888;
+  line-height: 1.6;
+}
+#nice pre { overflow-x: auto; }
+#nice pre code {
+  display: block;
+  line-height: 26px;
+  font-size: 12px;
+  margin: 0;
+  padding: 16px;
+  border-radius: 0;
+  color: #333;
+  background: #f8f8f8;
+}
+#nice table { border-collapse: collapse; }
