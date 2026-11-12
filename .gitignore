@@ -8,3 +8,10 @@ config_new.yaml
 content/beancount
 content/develop
 content/ollama
+
+# WeChat publishing dependencies, local previews, state and credentials
+scripts/wechat/node_modules/
+.wechat/
+.env
+.env.*
+!.env.example
