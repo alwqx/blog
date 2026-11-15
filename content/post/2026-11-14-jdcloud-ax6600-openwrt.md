@@ -20,6 +20,12 @@ tags:
 
 ## 预备信息
 
+参考教程：
+
+- [JDCloud AX6600（雅典娜） 刷机记录](https://250.ac.cn/2025/01/12/JDCloud-AX6600-openwrt/)
+- [京东云无线宝 AX6600 雅典娜刷 OpenWrt/LibWrt 记录](https://blog.lihan3238.com/p/jdcloud_ax6600_athena_openwrt/)
+- [京东云盒 IPQ6018 刷机指南：AX6600 / AX1800Pro / 太乙 通用流程](https://gwrt.uk/jdcloud-ipq6018-flash-guide.html)
+
 推荐软硬件：
 
 1. 最好使用 Chrome/Firefox 浏览器
